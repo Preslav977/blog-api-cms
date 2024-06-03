@@ -1,68 +1,191 @@
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+  --max-width-page: 1200px;
+  --max-width-content: 1250px;
+  --max-width-sub-content: 1225px;
+  --padding-content: 0px 1rem 0px 1rem;
+  --margin-default: 0 auto;
+  --grid-gap: 1.5em;
+  --grid-auto-columns: 1fr;
+  --margin-bottom-posts: 1.5em;
+  --flex-gap: 1.5em;
+  --article-category-margin-top: 2em;
+  --article-category-width: 50%;
+  --article-category-outline: 1.5px solid black;
+  --article-category-padding: 0.3em 1em 0.3em 1em;
+  --article-category-box-shadow: -5px 5px 5px black;
+  --article-category-text-transform: uppercase;
+  --article-category-background-color: white;
+  --article-category-text-decoration: none;
+  --article-category-color: black;
+  --article-author-date-container-gap: 0.3em;
+  --article-detailed-image-container-width: 100%;
+  --article-author-information-margin-bottom: 0.5em;
+  --article-detailed-description-line-height: 1.5em;
+  --article-detailed-tags-padding: 0.2em 0.18em 0.2em 0.18em;
+  --article-detailed-tags-text-transform: capitalize;
+  --article-tags-flex-gap: 1em;
+  --article-comments-width: 80%;
+  --submit-comment-textarea-width: 100%;
+  --submit-comment-min-height: 50px;
+  --submit-comment-max-height: 400px;
+  --submit-btn-margin: 1em 0em;
+  --submit-btn-background-color: gray;
+  --submit-btn-padding: 0.2em 0.5em;
+  --submit-btn-border-radius: 0.2em;
+  --article-comment-border-left: 1px solid #9443e0;
+  --article-comment-border-bottom: 1px solid gray;
+  --article-comment-margin: 1.5em 0;
+  --article-comment-margin-left: 0.8em;
+  --article-user-names-margin-bottom: 0.2em;
+  --article-content-margin: 0.5em 0;
+  --article-like-gap: 0.3em;
+  --article-like-svg-height: 20px;
+  --article-like-svg-width: 20px;
+  --author-content-gap: 1.2rem;
+  --attention-authors-padding: 0.3em 0.8em;
+  --author-link-outline: 1px solid black;
+  --author-section-image-aspect-ratio: 11.5 / 8;
+  --author-section-image-object-fit: cover;
+  --author-link-background-color: #353535;
+  --author-link-color: #fff;
+  --author-section-image-width: 40%;
+  --main-community-gap: 0.5em;
+  --main-section-margin-bottom: 1.5em;
+  --social-media-icon-width: 30px;
+  --grid-image-width: 100%;
+  --grid-image-height: 100%;
+  --grid-image-object-fit: cover;
+  --grid-image-span: 1 / 2 span;
+  --image-owner-position: absolute;
+  --image-owner-margin-top: 0.5em;
+  --image-owner-margin-left: 0.5em;
+  --image-owner-padding: 0.2em 0.15em 0.2em 0.15em;
+  --grid-image-aspect-ratio: 11.5 / 9;
+  --featured-tags-padding: 2em 2em;
+  --featured-tags-background-color: #e6e6e6;
+  --featured-tags-margin-bottom: 2em;
+  --featured-tags-gap: 1.2em;
+  --main-page-flexed-image-width: 370px;
+  --main-page-flexed-gap: 0.6rem;
+  --post-flexed-line-height: 1.3em;
+  --post-flexed-height: 4em;
+  --post-flexed-overflow: hidden;
+  --post-flexed-width: 60%;
+  --main-page-flexed-image-max-width: 100%;
+  --main-page-flex-category-margin-top: 0.2rem;
+  --footer-padding: 3em 3em;
+  --footer-background-color: #090909;
+  --footer-content-width: 50%;
+  --footer-right-side-gap: 2rem;
+  --login-form-min-height: 75vh;
+  --login-form-margin-top: 2.5em;
+  --login-form-width: 500px;
+  --login-form-link-color: #9443e0;
+  --form-content-margin-bottom: 1em;
+  --error-span-margin-top: 0.3em;
+  --error-span-color: #c20f0f;
+  --error-span-font-size: 0.8rem;
+  --login-button-padding: 0.5em 1.5em;
+  --login-button-background-color: #423c3a83;
+  --login-button-font-size: 1em;
+  --nav-content-padding: 1rem;
+  --left-span-background-color: #e2dfd2;
+  --middle-span-background-color: red;
+  --right-span-background-color: green;
+  --nav-component-svg-width: 1.2em;
+  --nav-svg-icons-margin-left: 0.3em;
+  --nav-svg-icons-width: 0.8em;
+  --nav-svg-icons-second-child-width: 1.4em;
+  --nav-main-page-letter-spacing: 0.3em;
+  --nav-main-page-font-size: 1.125rem;
+  --nav-main-page-margin-left: 2.5em;
+  --logged-in-user-svg-width: 30px;
+  --logged-in-user-svg-height: 30px;
+  --logged-in-user-margin-right: 0.8em;
+  --logged-in-user-margin-left: 1.5em;
+  --logged-in-user-border-radius: 50%;
+  --logged-in-dropdown-background-color: #f3f3f3;
+  --logged-in-dropdown-background-max-width: 110px;
+  --logged-in-dropdown-background-width: 110px;
+  --logged-in-dropdown-background-padding: 1em;
+  --logged-in-dropdown-background-left: -20%;
+  --logged-in-dropdown-font-size: 13px;
+  --login-button-padding: 0.4rem 0.8rem 0.4rem 0.8rem;
+  --login-button-margin-right: 0.5rem;
+  --login-button-border-radius: 0.1rem;
+  --nav-menu-content-gap: 1rem;
+  --nav-post-image-margin-bottom: 0.5rem;
+  --nav-post-image-min-height: 130px;
+  --nav-post-image-aspect-ratio: 3 / 2;
+  --nav-post-description-margin-left: 1rem;
+  --login-button-margin-left: 0.5rem;
+  --main-page-post-image-aspect-ratio: 9 / 14;
+  --main-page-post-body-margin-top: 0.9em;
+  --main-page-post-body-margin-bottom: 0.15em;
+  --sign-up-form-policy-margin-bottom: 2em;
+  --input-padding: 0.5em;
+  --greeting-user-gap: 0.5em;
+  --user-warning-width: 45%;
+  --user-dashboard-left-gap: 2em;
+  --user-dashboard-left-margin-right: 7em;
+  --user-label-line-height: 1.5;
+}
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+ul[role="list"],
+ol[role="list"] {
+  list-style: none;
+}
+
+li {
+  list-style-type: none;
+}
+
+html:focus-within {
+  scroll-behavior: smooth;
 }
 
 a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
+  text-decoration: none;
+  color: black;
 }
+
+a:visited {
+  color: black;
+}
+
 a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
   cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+img,
+picture {
+  width: 100%;
+}
+
+.postCategory {
+  outline: 1.5px solid black;
+  padding: 0.2em 0.15em 0.2em 0.15em;
+  position: absolute;
+  box-shadow: -5px 5px 5px black;
+  text-transform: capitalize;
+  background-color: white;
+}
+
+.postDescription {
+  line-height: 1.2em;
+  height: 3.5em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+hr {
+  margin: 3em 0px;
 }

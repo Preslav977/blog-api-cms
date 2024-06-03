@@ -1,0 +1,63 @@
+.logInFormWrapper {
+  min-height: var(--login-form-min-height);
+  max-width: var(--max-width-page);
+  margin: var(--margin-default);
+  padding: var(--logged-in-dropdown-background-padding);
+}
+
+.logInFormContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: var(--login-form-margin-top);
+}
+
+.logInFormPolicyContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: var(--featured-tags-margin-bottom);
+}
+
+.logInForm {
+  display: flex;
+  flex-direction: column;
+  max-width: var(--login-form-width);
+  width: var(--grid-image-width);
+  margin: var(--margin-default);
+}
+
+a.logInFormLink {
+  color: var(--login-form-link-color);
+}
+
+.formContentWrapper {
+  margin-bottom: var(--form-content-margin-bottom);
+}
+
+.error {
+  margin-top: var(--error-span-margin-top);
+  color: var(--error-span-color);
+  font-size: var(--error-span-font-size);
+  outline: 2px solid black;
+}
+
+.logInButtonContainer {
+  margin-bottom: var(--form-content-margin-bottom);
+}
+
+.logInButton {
+  padding: var(--login-button-padding);
+  background-color: var(--login-button-background-color);
+  border: 0;
+  color: var(--author-link-color);
+  font-size: var(--login-button-font-size);
+}
+
+@media screen and (max-width: 450px) {
+  .logInFormPolicyContent {
+    text-align: center;
+  }
+}

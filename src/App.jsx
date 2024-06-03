@@ -1,35 +1,27 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import "./index.css";
+import { createContext, useState } from "react";
+import LogInFormComponent from "./components/LogInFormComponent";
+
+export const EmailInputContext = createContext(null);
+
+export const PasswordInputContext = createContext(null);
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [emailInput, setEmailInput] = useState("");
+
+  const [passwordInput, setPasswordInput] = useState("");
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <EmailInputContext.Provider value={{ emailInput, setEmailInput }}>
+        <PasswordInputContext.Provider
+          value={{ passwordInput, setPasswordInput }}
+        >
+          <LogInFormComponent />
+        </PasswordInputContext.Provider>
+      </EmailInputContext.Provider>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
