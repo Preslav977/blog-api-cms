@@ -1,14 +1,17 @@
 import styles from "./LogInFormComponent.module.css";
-import { useContext } from "react";
-import { EmailContext, PasswordContext } from "../App";
+import { useState } from "react";
+// import { EmailContext, PasswordContext } from "../App";
 
 function LogInFormComponent() {
-  const { email, setEmail } = useContext(EmailContext);
+  const [email, setEmail] = useState("");
 
-  const { password, setPassword } = useContext(PasswordContext);
+  const [password, setPassword] = useState("");
 
-  // eslint-disable-next-line no-useless-escape
-  const emailRegex = /^([a-z\d\.-]+)@([a-z\d-]+)\.([a-z]{2,8})(\.[a-z]{2,8})?$/;
+  const [error, setError] = useState(null);
+
+  const emailRegex =
+    // eslint-disable-next-line no-useless-escape
+    /^([a-z\d\.-_]+)@([a-z\d-]+)\.([a-z]{2,8})(\.[a-z]{2,8})?$/;
 
   async function HandleLogin(e) {
     e.preventDefault();
@@ -25,21 +28,25 @@ function LogInFormComponent() {
         }),
       });
 
-      console.log(response);
-
-      console.log(email);
-
-      console.log(password);
+      if (response.status === 401) {
+        setError(response.statusText);
+      }
 
       const result = await response.json();
 
       console.log(result);
 
+      if (result.message === "Unauthorized") {
+        setError(result.message);
+      }
+
       const bearerToken = ["Bearer", result.token];
 
       localStorage.setItem("token", JSON.stringify(bearerToken));
     } catch (err) {
-      console.log(err);
+      if (err.status === 401) {
+        setError(err.statusText);
+      }
     }
   }
 
@@ -73,6 +80,9 @@ function LogInFormComponent() {
               <span className={styles.error}>
                 Email does not match required format
               </span>
+            )}
+            {error === "Unauthorized" && (
+              <span className={styles.error}>Unauthorized</span>
             )}
           </div>
 
