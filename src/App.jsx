@@ -1,5 +1,6 @@
 import "./index.css";
 import { useState, createContext } from "react";
+import NavComponent from "./components/NavComponent";
 import { Outlet } from "react-router-dom";
 
 export const PostContext = createContext(null);
@@ -16,7 +17,10 @@ function App() {
       <PostContext.Provider value={[posts, setPosts]}>
         <IsUserLoggedInContext.Provider
           value={[IsUserLoggedIn, setIsUserLoggedIn]}
-        ></IsUserLoggedInContext.Provider>
+        >
+          <NavComponent />
+          <Outlet />
+        </IsUserLoggedInContext.Provider>
       </PostContext.Provider>
     </>
   );
