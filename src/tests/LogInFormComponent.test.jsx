@@ -39,4 +39,30 @@ describe("should render LogInFormComponent", () => {
 
     expect(logInBtn.textContent).toMatch(/log in/i);
   });
+
+  it("should render the content and the span errors.", () => {
+    const router = createMemoryRouter(routes, {
+      initialEntries: ["/"],
+    });
+
+    render(<RouterProvider router={router} />);
+
+    // screen.debug();
+
+    expect(
+      screen.queryByText("Welcome back to Bulgarian!").textContent,
+    ).toMatch(/welcome back to bulgarian!/i);
+
+    expect(screen.queryByTestId("logInFormPrivacy").textContent).toEqual(
+      "By continuing, you are agree to our User Agreement and Privacy Policy.",
+    );
+
+    expect(screen.queryByText("Email:").textContent).toMatch(/email:/i);
+
+    expect(screen.queryByText("Password:").textContent).toMatch(/password:/i);
+
+    const logInBtn = screen.queryByRole("button");
+
+    expect(logInBtn.textContent).toMatch(/log in/i);
+  });
 });
