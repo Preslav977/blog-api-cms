@@ -1,12 +1,11 @@
 import styles from "./LogInFormComponent.module.css";
 import { useContext } from "react";
-import { EmailInputContext, PasswordInputContext } from "../App";
-// import { Link } from "react-router-dom";
+import { EmailContext, PasswordContext } from "../App";
 
 function LogInFormComponent() {
-  const { emailInput, setEmailInput } = useContext(EmailInputContext);
+  const { email, setEmail } = useContext(EmailContext);
 
-  const { passwordInput, setPasswordInput } = useContext(PasswordInputContext);
+  const { password, setPassword } = useContext(PasswordContext);
 
   // eslint-disable-next-line no-useless-escape
   const emailRegex = /^([a-z\d\.-]+)@([a-z\d-]+)\.([a-z]{2,8})(\.[a-z]{2,8})?$/;
@@ -21,12 +20,20 @@ function LogInFormComponent() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          emailInput,
-          passwordInput,
+          email,
+          password,
         }),
       });
 
+      console.log(response);
+
+      console.log(email);
+
+      console.log(password);
+
       const result = await response.json();
+
+      console.log(result);
 
       const bearerToken = ["Bearer", result.token];
 
@@ -58,16 +65,17 @@ function LogInFormComponent() {
               name="email"
               minLength={5}
               maxLength={30}
-              value={emailInput}
-              onChange={(e) => setEmailInput(e.target.value)}
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               required
             />
-            {!emailInput.match(emailRegex) && (
+            {!email.match(emailRegex) && (
               <span className={styles.error}>
                 Email does not match required format
               </span>
             )}
           </div>
+
           <div className={styles.formContentWrapper}>
             <label htmlFor="password">Password:</label>
             <input
@@ -75,11 +83,11 @@ function LogInFormComponent() {
               type="password"
               name="password"
               minLength={8}
-              value={passwordInput}
-              onChange={(e) => setPasswordInput(e.target.value)}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               required
             />
-            {passwordInput.length < 8 && (
+            {password.length < 8 && (
               <span className={styles.error}>
                 Password must be at least 8 characters long.
               </span>

@@ -2,24 +2,22 @@ import "./index.css";
 import { createContext, useState } from "react";
 import LogInFormComponent from "./components/LogInFormComponent";
 
-export const EmailInputContext = createContext(null);
+export const EmailContext = createContext(null);
 
-export const PasswordInputContext = createContext(null);
+export const PasswordContext = createContext(null);
 
 function App() {
-  const [emailInput, setEmailInput] = useState("");
+  const [email, setEmail] = useState("");
 
-  const [passwordInput, setPasswordInput] = useState("");
+  const [password, setPassword] = useState("");
 
   return (
     <>
-      <EmailInputContext.Provider value={{ emailInput, setEmailInput }}>
-        <PasswordInputContext.Provider
-          value={{ passwordInput, setPasswordInput }}
-        >
+      <EmailContext.Provider value={{ email, setEmail }}>
+        <PasswordContext.Provider value={{ password, setPassword }}>
           <LogInFormComponent />
-        </PasswordInputContext.Provider>
-      </EmailInputContext.Provider>
+        </PasswordContext.Provider>
+      </EmailContext.Provider>
     </>
   );
 }
