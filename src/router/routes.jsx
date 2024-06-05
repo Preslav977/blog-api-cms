@@ -1,16 +1,16 @@
+import { element } from "prop-types";
 import App from "../App";
 import LogInFormComponent from "../components/LogInFormComponent";
+import NavComponent from "../components/NavComponent";
 
 const routes = [
   {
     path: "/",
-    element: <LogInFormComponent />,
-  },
-
-  {
-    path: "/home",
     element: <App />,
-    children: [],
+    children: [
+      { index: true, element: <LogInFormComponent /> },
+      { path: "/home", element: <NavComponent /> },
+    ],
   },
 ];
 

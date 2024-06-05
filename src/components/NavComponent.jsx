@@ -1,12 +1,13 @@
 import styles from "./NavComponent.module.css";
-import { useState, useContext } from "react";
-import { Link } from "react-router-dom";
-import { PostContext, IsUserLoggedInContext } from "../App";
+import { useState } from "react";
+import { Link, useOutletContext } from "react-router-dom";
 
 function NavComponent() {
+  const [posts, setPosts] = useOutletContext();
+
+  const [IsUserLoggedIn, setIsUserLoggedIn] = useOutletContext();
+
   const [navComponentDropDown, setNavComponentDropDrop] = useState(false);
-  const [posts, setPosts] = useContext(PostContext);
-  const [IsUserLogged, setIsUserLogged] = useContext(IsUserLoggedInContext);
 
   const [loggedInUserDropDown, setLoggedInUserDropDown] = useState(false);
 
@@ -38,7 +39,7 @@ function NavComponent() {
             </span>
           </Link>
           <div className={styles.navRightSideContent}>
-            {!IsUserLogged ? (
+            {!IsUserLoggedIn ? (
               <Link to={"/account/login"}>
                 <button className={styles.loginButton}>Log in</button>
               </Link>
@@ -99,7 +100,7 @@ function NavComponent() {
             </span>
           </Link>
           <div className={styles.navRightSideContent}>
-            {!IsUserLogged ? (
+            {!IsUserLoggedIn ? (
               <Link to={"/account/login"}>
                 <button className={styles.loginButton}>Log in</button>
               </Link>

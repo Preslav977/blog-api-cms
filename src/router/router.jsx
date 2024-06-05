@@ -6,10 +6,12 @@ import NavComponent from "../components/NavComponent";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <LogInFormComponent />,
+    element: <App />,
+    children: [
+      { index: true, element: <LogInFormComponent /> },
+      { path: "/home", element: <NavComponent /> },
+    ],
   },
-
-  { path: "/home", element: <App />, children: [] },
 ]);
 
 export default router;

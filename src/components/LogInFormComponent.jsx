@@ -1,13 +1,17 @@
 import styles from "./LogInFormComponent.module.css";
 import { useState } from "react";
-// import { EmailContext, PasswordContext } from "../App";
+import { useNavigate, useOutletContext } from "react-router-dom";
 
 function LogInFormComponent() {
   const [email, setEmail] = useState("");
 
   const [password, setPassword] = useState("");
 
+  const [IsUserLoggedIn, setIsUserLoggedIn] = useOutletContext();
+
   const [error, setError] = useState(null);
+
+  const navigate = useNavigate();
 
   const emailRegex =
     // eslint-disable-next-line no-useless-escape
@@ -28,25 +32,23 @@ function LogInFormComponent() {
         }),
       });
 
-      if (response.status === 401) {
-        setError(response.statusText);
-      }
-
       const result = await response.json();
 
       console.log(result);
 
       if (result.message === "Unauthorized") {
         setError(result.message);
+      } else {
+        const bearerToken = ["Bearer", result.token];
+
+        localStorage.setItem("token", JSON.stringify(bearerToken));
+
+        navigate("/home");
+
+        setIsUserLoggedIn(true);
       }
-
-      const bearerToken = ["Bearer", result.token];
-
-      localStorage.setItem("token", JSON.stringify(bearerToken));
     } catch (err) {
-      if (err.status === 401) {
-        setError(err.statusText);
-      }
+      //
     }
   }
 
@@ -106,12 +108,6 @@ function LogInFormComponent() {
           <div className={styles.logInButtonContainer}>
             <button className={styles.logInButton}>Log in</button>
           </div>
-          {/* <p data-testid="logInFormTextAndLink">
-            Don&apos;t an account yet?{" "}
-            <Link className={styles.logInFormLink} to="/account/signup">
-              Sign Up Now
-            </Link>
-          </p> */}
         </form>
       </div>
     </div>

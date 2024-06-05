@@ -1,27 +1,15 @@
 import "./index.css";
-import { useState, createContext } from "react";
-import NavComponent from "./components/NavComponent";
 import { Outlet } from "react-router-dom";
-
-export const PostContext = createContext(null);
-
-export const IsUserLoggedInContext = createContext(null);
+import React from "react";
 
 function App() {
-  const [posts, setPosts] = useState([]);
+  const [posts, setPosts] = React.useState([]);
 
-  const [IsUserLoggedIn, setIsUserLoggedIn] = useState(false);
+  const [IsUserLoggedIn, setIsUserLoggedIn] = React.useState(false);
 
   return (
     <>
-      <PostContext.Provider value={[posts, setPosts]}>
-        <IsUserLoggedInContext.Provider
-          value={[IsUserLoggedIn, setIsUserLoggedIn]}
-        >
-          <NavComponent />
-          <Outlet />
-        </IsUserLoggedInContext.Provider>
-      </PostContext.Provider>
+      <Outlet context={[posts, setPosts, IsUserLoggedIn, setIsUserLoggedIn]} />
     </>
   );
 }
