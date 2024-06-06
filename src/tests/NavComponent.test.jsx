@@ -185,4 +185,60 @@ describe("Should render NavComponent", () => {
 
     expect(postTitle.textContent).toMatch(/bulgarian music folklore/i);
   });
+
+  it("should navigate to  Culture link and render a post by category", async () => {
+    const router = createMemoryRouter(routes, {
+      initialEntries: [
+        "/home",
+        "/home/posts/category/66446958f1f4a04823a2c030",
+      ],
+      initialIndex: 0,
+    });
+
+    render(<RouterProvider router={router} />);
+
+    // screen.debug();
+
+    const user = userEvent.setup();
+
+    let apiLoading = screen.queryByTestId("loading");
+
+    expect(apiLoading).toBeInTheDocument();
+
+    await waitForElementToBeRemoved(() => screen.queryByTestId("loading"));
+
+    const readLink = screen.getByTestId("read");
+
+    await user.click(readLink);
+
+    const cultureLink = screen.queryByTestId("culture");
+
+    await user.click(cultureLink);
+
+    apiLoading = screen.queryByTestId("loading");
+
+    expect(apiLoading).toBeInTheDocument();
+
+    await waitForElementToBeRemoved(() => screen.queryByTestId("loading"));
+
+    // screen.debug();
+
+    const postCategory = screen.queryAllByTestId("postCategory");
+
+    expect(postCategory[0].textContent).toMatch(/culture/i);
+
+    screen.debug();
+
+    const postTitle = screen.queryByText("The orthodox icons of Bulgaria");
+
+    expect(postTitle.textContent).toMatch(/the orthodox icons of bulgaria/i);
+
+    const postTitleSecond = screen.queryByText(
+      "Saint Sofia Church – the oldest operating church in Europe",
+    );
+
+    expect(postTitleSecond.textContent).toMatch(
+      /saint sofia church – the oldest operating church in europe/i,
+    );
+  });
 });
