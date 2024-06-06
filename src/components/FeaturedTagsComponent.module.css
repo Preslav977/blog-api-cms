@@ -1,0 +1,33 @@
+.featuredTagsContainer {
+  display: flex;
+  flex-direction: column;
+  padding: var(--featured-tags-padding);
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  background-color: var(--featured-tags-background-color);
+  gap: var(--author-content-gap);
+  margin-bottom: var(--featured-tags-margin-bottom);
+}
+
+.featuredTags {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: var(--featured-tags-gap);
+}
+
+.featuredTags > a {
+  outline: var(--article-category-outline);
+  padding: var(--image-owner-padding);
+  box-shadow: var(--article-category-box-shadow);
+  text-transform: var(--article-category-text-transform);
+  background-color: var(--article-category-background-color);
+  text-decoration: var(--article-category-text-decoration);
+  color: var(--article-category-color);
+}
+
+.featuredTags > a:visited {
+  color: var(--article-category-color);
+}

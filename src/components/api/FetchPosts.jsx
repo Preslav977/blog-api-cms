@@ -4,6 +4,7 @@ import { useOutletContext } from "react-router-dom";
 import PostComponent from "../PostComponent";
 import AuthorComponent from "../AuthorComponent";
 import FlexedPostComponent from "../FlexedPostComponent";
+import FeaturedTagsComponent from "../FeaturedTagsComponent";
 
 function FetchPosts() {
   const [posts, setPosts] = useOutletContext();
@@ -47,6 +48,22 @@ function FetchPosts() {
       <hr />
       <section>
         {posts.slice(0, 5).map((post) => (
+          <FlexedPostComponent
+            key={post._id}
+            postImgPathId={`/posts/${post._id}`}
+            postImgSrc={post.image_link}
+            postCategoryPathId={`/posts/category/${post.category[0]._id}`}
+            postCategory={post.category[0].category}
+            postTitlePathId={`/posts/${post._id}`}
+            postTitle={post.title}
+            postBodyPathId={`/posts/${post._id}`}
+            postBody={post.body}
+          />
+        ))}
+      </section>
+      <FeaturedTagsComponent />
+      <section className={styles.mainPageSecondaryPostsSection}>
+        {posts.slice(5, 10).map((post) => (
           <FlexedPostComponent
             key={post._id}
             postImgPathId={`/posts/${post._id}`}
