@@ -3,6 +3,7 @@ import LogInFormComponent from "../components/LogInFormComponent";
 import App from "../App";
 import NavComponent from "../components/NavComponent";
 import FetchPosts from "../components/api/FetchPosts";
+import FetchSinglePost from "../components/api/FetchSinglePost";
 
 const router = createBrowserRouter([
   {
@@ -19,6 +20,7 @@ const router = createBrowserRouter([
           </>
         ),
       },
+      { path: "/home/posts/:id", element: <FetchSinglePost /> },
     ],
   },
 ]);

@@ -1,0 +1,128 @@
+.articleDetailedContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: var(--max-width-content);
+  margin: var(--margin-default);
+  gap: var(--flex-gap);
+  padding: var(--padding-content);
+}
+
+.articleCategoryContainer {
+  margin-top: var(--article-category-margin-top);
+  display: flex;
+  justify-content: center;
+  width: var(--article-category-width);
+}
+
+.articleCategory {
+  outline: var(--article-category-outline);
+  padding: var(--article-category-padding);
+  box-shadow: var(--article-category-box-shadow);
+  text-transform: var(--article-category-text-transform);
+  background-color: var(--article-category-background-color);
+  text-decoration: var(--article-category-text-decoration);
+  color: var(--article-category-color);
+}
+
+.articleCategory:visited {
+  color: var(--article-category-color);
+}
+
+.articleAuthorAndDateContainer {
+  display: flex;
+  justify-content: center;
+  gap: var(--article-author-date-container-gap);
+}
+
+.articleDetailedImageContainer {
+  width: var(--article-detailed-image-container-width);
+}
+
+.articleAuthorInformation h2 {
+  margin-bottom: var(--article-author-information-margin-bottom);
+  text-align: center;
+}
+
+.articleDetailedDescriptionContainer {
+  line-height: var(--article-detailed-description-line-height);
+}
+
+.articleDetailedTagsContainer p {
+  outline: var(--article-category-outline);
+  padding: var(--article-detailed-tags-padding);
+  box-shadow: var(--article-category-box-shadow);
+  text-transform: var(--article-detailed-tags-text-transform);
+  background-color: var(--article-category-background-color);
+}
+
+.articleTags {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: var(--article-tags-flex-gap);
+}
+
+.articleDetailedTagsContainer h3,
+.articleCommentsContainer h3,
+.articleLogInUser {
+  margin-bottom: var(--article-author-information-margin-bottom);
+  text-align: center;
+}
+
+.articleCommentsContainer {
+  width: var(--article-comments-width);
+  margin-top: var(--article-category-margin-top);
+}
+
+.submitCommentTextArea {
+  width: var(--submit-comment-textarea-width);
+  min-height: var(--submit-comment-min-height);
+  max-height: var(--submit-comment-max-height);
+  resize: vertical;
+  cursor: row-resize;
+}
+
+.submitBtnCommentContainer {
+  margin: var(--submit-btn-margin);
+}
+
+.submitBtnComment {
+  background-color: var(--submit-btn-background-color);
+  color: var(--article-category-background-color);
+  padding: var(--submit-btn-padding);
+  border: none;
+  border-radius: var(--submit-btn-border-radius);
+}
+
+.articleComment {
+  border-left: var(--article-comment-border-left);
+  border-bottom: var(--article-comment-border-bottom);
+  margin: var(--article-comment-margin);
+}
+
+.articleComment > p,
+.articleLikeContainer {
+  margin-left: var(--article-comment-margin-left);
+}
+
+.articleUserNames {
+  margin-bottom: var(--article-user-names-margin-bottom);
+}
+
+.articleContent {
+  margin: var(--article-content-margin);
+}
+
+.articleLikeContainer {
+  display: flex;
+  margin-bottom: var(--article-author-information-margin-bottom);
+  gap: var(--article-like-gap);
+}
+
+.articleCommentLikeSvg {
+  height: var(--article-like-svg-height);
+  width: var(--article-like-svg-width);
+}

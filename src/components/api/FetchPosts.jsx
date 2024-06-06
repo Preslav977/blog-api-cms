@@ -34,12 +34,12 @@ function FetchPosts() {
         {posts.slice(0, 5).map((post) => (
           <PostComponent
             key={post._id}
-            postImgPathId={`/posts/${post._id}`}
+            postImgPathId={`/home/posts/${post._id}`}
             postImgSrc={post.image_link}
-            postCategoryPathId={`/posts/category/${post.category[0]._id}`}
+            postCategoryPathId={`/home/posts/category/${post.category[0]._id}`}
             postCategory={post.category[0].category}
             postTitle={post.title}
-            postBodyPathId={`/posts/${post._id}`}
+            postBodyPathId={`/home/posts/${post._id}`}
             postBody={post.body}
           />
         ))}
@@ -51,9 +51,9 @@ function FetchPosts() {
         {posts.slice(0, 5).map((post) => (
           <FlexedPostComponent
             key={post._id}
-            postImgPathId={`/posts/${post._id}`}
+            postImgPathId={`/home/posts/${post._id}`}
             postImgSrc={post.image_link}
-            postCategoryPathId={`/posts/category/${post.category[0]._id}`}
+            postCategoryPathId={`/home/posts/category/${post.category[0]._id}`}
             postCategory={post.category[0].category}
             postTitlePathId={`/posts/${post._id}`}
             postTitle={post.title}
@@ -67,13 +67,13 @@ function FetchPosts() {
         {posts.slice(5, 10).map((post) => (
           <FlexedPostComponent
             key={post._id}
-            postImgPathId={`/posts/${post._id}`}
+            postImgPathId={`/home/posts/${post._id}`}
             postImgSrc={post.image_link}
-            postCategoryPathId={`/posts/category/${post.category[0]._id}`}
+            postCategoryPathId={`/home/posts/category/${post.category[0]._id}`}
             postCategory={post.category[0].category}
-            postTitlePathId={`/posts/${post._id}`}
+            postTitlePathId={`/home/posts/${post._id}`}
             postTitle={post.title}
-            postBodyPathId={`/posts/${post._id}`}
+            postBodyPathId={`/home/posts/${post._id}`}
             postBody={post.body}
           />
         ))}

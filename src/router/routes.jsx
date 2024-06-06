@@ -2,6 +2,7 @@ import App from "../App";
 import LogInFormComponent from "../components/LogInFormComponent";
 import NavComponent from "../components/NavComponent";
 import FetchPosts from "../components/api/FetchPosts";
+import FetchSinglePost from "../components/api/FetchSinglePost";
 
 const routes = [
   {
@@ -18,6 +19,7 @@ const routes = [
           </>
         ),
       },
+      { path: "/home/posts/:id", element: <FetchSinglePost /> },
     ],
   },
 ];
