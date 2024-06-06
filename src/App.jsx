@@ -1,6 +1,7 @@
 import "./index.css";
 import { Outlet } from "react-router-dom";
 import React from "react";
+import FooterComponent from "./components/FooterComponent";
 
 function App() {
   const [posts, setPosts] = React.useState([]);
@@ -10,6 +11,7 @@ function App() {
   return (
     <>
       <Outlet context={[posts, setPosts, IsUserLoggedIn, setIsUserLoggedIn]} />
+      <FooterComponent />
     </>
   );
 }
