@@ -1,6 +1,7 @@
-import { useEffect, useState } from "react";
 import styles from "./FetchPosts.module.css";
+import { useEffect, useState } from "react";
 import { useOutletContext } from "react-router-dom";
+import PostComponent from "../PostComponent";
 
 function FetchPosts() {
   const [posts, setPosts] = useOutletContext();
@@ -25,7 +26,24 @@ function FetchPosts() {
   if (loading) return <p data-testid="loading">Loading....</p>;
   if (error) return <p>A network error was encountered</p>;
 
-  return <main></main>;
+  return (
+    <main className={styles.mainContent}>
+      <div className={styles.postContainerGrid}>
+        {posts.slice(0, 5).map((post) => (
+          <PostComponent
+            key={post._id}
+            postImgPathId={`/posts/${post._id}`}
+            postImgSrc={post.image_link}
+            postCategoryPathId={`/posts/category/${post.category[0]._id}`}
+            postCategory={post.category[0].category}
+            postTitle={post.title}
+            postBodyPathId={`/posts/${post._id}`}
+            postBody={post.body}
+          />
+        ))}
+      </div>
+    </main>
+  );
 }
 
 export default FetchPosts;

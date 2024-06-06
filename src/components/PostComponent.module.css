@@ -1,0 +1,53 @@
+.mainPagePostArticleContainer:nth-child(1) {
+  grid-area: firstPost;
+}
+
+.mainPagePostArticleContainer:nth-child(2) {
+  grid-area: secondPost;
+}
+
+.mainPagePostArticleContainer:nth-child(3) {
+  grid-area: thirdPost;
+}
+
+.mainPagePostArticleContainer:nth-child(4) {
+  grid-area: fourthPost;
+}
+
+.mainPagePostArticleContainer:nth-child(5) {
+  grid-area: fifthPost;
+}
+
+.mainPagePostImg {
+  aspect-ratio: var(--author-section-image-aspect-ratio);
+}
+
+.mainPagePostArticleContainer:nth-child(3) > a > .mainPagePostImg {
+  aspect-ratio: var(--main-page-post-image-aspect-ratio);
+  object-fit: var(--author-section-image-object-fit);
+}
+
+.mainPagePostCategoryContainer {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.mainPagePostBody {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+}
+
+.mainPagePostBody > a > h2 {
+  margin-top: var(--main-page-post-body-margin-top);
+  margin-bottom: var(--main-page-post-body-margin-bottom);
+}
+
+@media screen and (max-width: 900px) {
+  .mainPagePostArticleContainer:nth-child(3) > a > .mainPagePostImg {
+    aspect-ratio: var(--author-section-image-aspect-ratio);
+  }
+}

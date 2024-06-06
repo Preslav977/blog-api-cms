@@ -1,0 +1,41 @@
+.postContainerGrid {
+  max-width: var(--max-width-content);
+  margin: var(--margin-default);
+  padding: var(--padding-content);
+  display: grid;
+  grid-auto-columns: var(--grid-auto-columns);
+  gap: var(--grid-gap);
+  grid-template-areas:
+    "firstPost"
+    "secondPost"
+    "thirdPost"
+    "fourthPost"
+    "fifthPost";
+}
+
+@media screen and (min-width: 75em) {
+  .postContainerGrid {
+    grid-template-areas:
+      "firstPost firstPost thirdPost thirdPost secondPost secondPost"
+      "fourthPost fourthPost thirdPost thirdPost fifthPost fifthPost";
+  }
+}
+
+@media screen and (min-width: 56.5em) {
+  .postContainerGrid {
+    grid-template-areas:
+      "firstPost firstPost thirdPost thirdPost secondPost secondPost"
+      "fourthPost fourthPost thirdPost thirdPost fifthPost fifthPost";
+  }
+}
+
+.homeSectionPosts {
+  max-width: var(--max-width-content);
+  margin: var(--margin-default);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--grid-gap);
+  padding: var(--padding-content);
+  margin-bottom: var(--margin-bottom-posts);
+}
