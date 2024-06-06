@@ -16,7 +16,7 @@ const routes = [
         path: "/home",
         element: (
           <>
-            <NavComponent />
+            {/* <NavComponent /> */}
             <FetchPosts />
           </>
         ),

@@ -6,6 +6,7 @@ import AuthorComponent from "../AuthorComponent";
 import FlexedPostComponent from "../FlexedPostComponent";
 import FeaturedTagsComponent from "../FeaturedTagsComponent";
 import CommunityComponent from "../CommunityComponent";
+import NavComponent from "../NavComponent";
 
 function FetchPosts() {
   const [posts, setPosts] = useOutletContext();
@@ -29,57 +30,60 @@ function FetchPosts() {
   if (error) return <p>A network error was encountered</p>;
 
   return (
-    <main className={styles.mainContent}>
-      <div className={styles.postContainerGrid}>
-        {posts.slice(0, 5).map((post) => (
-          <PostComponent
-            key={post._id}
-            postImgPathId={`/home/posts/${post._id}`}
-            postImgSrc={post.image_link}
-            postCategoryPathId={`/home/posts/category/${post.category[0]._id}`}
-            postCategory={post.category[0].category}
-            postTitle={post.title}
-            postBodyPathId={`/home/posts/${post._id}`}
-            postBody={post.body}
-          />
-        ))}
-      </div>
-      <hr />
-      <AuthorComponent />
-      <hr />
-      <section>
-        {posts.slice(0, 5).map((post) => (
-          <FlexedPostComponent
-            key={post._id}
-            postImgPathId={`/home/posts/${post._id}`}
-            postImgSrc={post.image_link}
-            postCategoryPathId={`/home/posts/category/${post.category[0]._id}`}
-            postCategory={post.category[0].category}
-            postTitlePathId={`/home/posts/${post._id}`}
-            postTitle={post.title}
-            postBodyPathId={`/home/posts/${post._id}`}
-            postBody={post.body}
-          />
-        ))}
-      </section>
-      <FeaturedTagsComponent />
-      <section className={styles.mainPageSecondaryPostsSection}>
-        {posts.slice(5, 10).map((post) => (
-          <FlexedPostComponent
-            key={post._id}
-            postImgPathId={`/home/posts/${post._id}`}
-            postImgSrc={post.image_link}
-            postCategoryPathId={`/home/posts/category/${post.category[0]._id}`}
-            postCategory={post.category[0].category}
-            postTitlePathId={`/home/posts/${post._id}`}
-            postTitle={post.title}
-            postBodyPathId={`/home/posts/${post._id}`}
-            postBody={post.body}
-          />
-        ))}
-      </section>
-      <CommunityComponent />
-    </main>
+    <>
+      <NavComponent />
+      <main className={styles.mainContent}>
+        <div className={styles.postContainerGrid}>
+          {posts.slice(0, 5).map((post) => (
+            <PostComponent
+              key={post._id}
+              postImgPathId={`/home/posts/${post._id}`}
+              postImgSrc={post.image_link}
+              postCategoryPathId={`/home/posts/category/${post.category[0]._id}`}
+              postCategory={post.category[0].category}
+              postTitle={post.title}
+              postBodyPathId={`/home/posts/${post._id}`}
+              postBody={post.body}
+            />
+          ))}
+        </div>
+        <hr />
+        <AuthorComponent />
+        <hr />
+        <section>
+          {posts.slice(0, 5).map((post) => (
+            <FlexedPostComponent
+              key={post._id}
+              postImgPathId={`/home/posts/${post._id}`}
+              postImgSrc={post.image_link}
+              postCategoryPathId={`/home/posts/category/${post.category[0]._id}`}
+              postCategory={post.category[0].category}
+              postTitlePathId={`/home/posts/${post._id}`}
+              postTitle={post.title}
+              postBodyPathId={`/home/posts/${post._id}`}
+              postBody={post.body}
+            />
+          ))}
+        </section>
+        <FeaturedTagsComponent />
+        <section className={styles.mainPageSecondaryPostsSection}>
+          {posts.slice(5, 10).map((post) => (
+            <FlexedPostComponent
+              key={post._id}
+              postImgPathId={`/home/posts/${post._id}`}
+              postImgSrc={post.image_link}
+              postCategoryPathId={`/home/posts/category/${post.category[0]._id}`}
+              postCategory={post.category[0].category}
+              postTitlePathId={`/home/posts/${post._id}`}
+              postTitle={post.title}
+              postBodyPathId={`/home/posts/${post._id}`}
+              postBody={post.body}
+            />
+          ))}
+        </section>
+        <CommunityComponent />
+      </main>
+    </>
   );
 }
 
