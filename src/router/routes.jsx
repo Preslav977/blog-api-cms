@@ -3,6 +3,7 @@ import LogInFormComponent from "../components/LogInFormComponent";
 import NavComponent from "../components/NavComponent";
 import FetchPosts from "../components/api/FetchPosts";
 import FetchSinglePost from "../components/api/FetchSinglePost";
+import FetchPostsByCategory from "../components/api/FetchPostsByCategory";
 
 const routes = [
   {
@@ -23,6 +24,7 @@ const routes = [
         path: "/home/posts/:id",
         element: <FetchSinglePost />,
       },
+      { path: "home/posts/category/:id", element: <FetchPostsByCategory /> },
     ],
   },
 ];

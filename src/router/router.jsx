@@ -4,6 +4,7 @@ import App from "../App";
 import NavComponent from "../components/NavComponent";
 import FetchPosts from "../components/api/FetchPosts";
 import FetchSinglePost from "../components/api/FetchSinglePost";
+import FetchPostsByCategory from "../components/api/FetchPostsByCategory";
 
 const router = createBrowserRouter([
   {
@@ -24,6 +25,8 @@ const router = createBrowserRouter([
         path: "/home/posts/:id",
         element: <FetchSinglePost />,
       },
+
+      { path: "home/posts/category/:id", element: <FetchPostsByCategory /> },
     ],
   },
 ]);
