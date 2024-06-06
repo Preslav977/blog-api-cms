@@ -241,4 +241,68 @@ describe("Should render NavComponent", () => {
       /saint sofia church – the oldest operating church in europe/i,
     );
   });
+
+  it("should navigate to History link and render a post by category", async () => {
+    const router = createMemoryRouter(routes, {
+      initialEntries: [
+        "/home",
+        "/home/posts/category/6644691ff1f4a04823a2c01e",
+      ],
+      initialIndex: 0,
+    });
+
+    render(<RouterProvider router={router} />);
+
+    // screen.debug();
+
+    const user = userEvent.setup();
+
+    let apiLoading = screen.queryByTestId("loading");
+
+    expect(apiLoading).toBeInTheDocument();
+
+    await waitForElementToBeRemoved(() => screen.queryByTestId("loading"));
+
+    const readLink = screen.getByTestId("read");
+
+    await user.click(readLink);
+
+    const historyLink = screen.queryAllByText("history");
+
+    await user.click(historyLink[0]);
+
+    // screen.debug();
+
+    apiLoading = screen.queryByTestId("loading");
+
+    expect(apiLoading).toBeInTheDocument();
+
+    await waitForElementToBeRemoved(() => screen.queryByTestId("loading"));
+
+    const postCategory = screen.queryAllByTestId("postCategory");
+
+    expect(postCategory[0].textContent).toMatch(/history/i);
+
+    // screen.debug();
+
+    const postTitle = screen.queryAllByText(
+      "Pleven Epopee 1877 Panorama, Pleven",
+    );
+
+    expect(postTitle[0].textContent).toMatch(
+      /pleven epopee 1877 panorama, pleven/i,
+    );
+
+    const posTitleSecond = screen.queryByText("Tsar Simeon The Great");
+
+    expect(posTitleSecond.textContent).toMatch(/tsar simeon the great/i);
+
+    const posTitleThird = screen.queryByText(
+      "Vasil Levski - unsurpassed in courage, defied an empire",
+    );
+
+    expect(posTitleThird.textContent).toMatch(
+      /vasil levski - unsurpassed in courage, defied an empire/i,
+    );
+  });
 });
