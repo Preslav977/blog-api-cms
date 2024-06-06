@@ -397,4 +397,52 @@ describe("Should render NavComponent", () => {
 
     expect(postTitle[0].textContent).toMatch(/the bulgarian feasts/i);
   });
+
+  it("should navigate to Customs link and render a post by category", async () => {
+    const router = createMemoryRouter(routes, {
+      initialEntries: [
+        "/home",
+        "/home/posts/category/66446a59f1f4a04823a2c07d",
+      ],
+      initialIndex: 0,
+    });
+
+    render(<RouterProvider router={router} />);
+
+    // screen.debug();
+
+    let apiLoading = screen.queryByTestId("loading");
+
+    expect(apiLoading).toBeInTheDocument();
+
+    await waitForElementToBeRemoved(() => screen.queryByTestId("loading"));
+
+    const user = userEvent.setup();
+
+    const readLink = screen.getByTestId("read");
+
+    await user.click(readLink);
+
+    const customsLink = screen.queryAllByText("customs");
+
+    await user.click(customsLink[0]);
+
+    screen.debug();
+
+    apiLoading = screen.queryByTestId("loading");
+
+    expect(apiLoading).toBeInTheDocument();
+
+    await waitForElementToBeRemoved(() => screen.queryByTestId("loading"));
+
+    const postCategory = screen.queryAllByText("customs");
+
+    expect(postCategory[0].textContent).toMatch(/customs/i);
+
+    const postTitle = screen.queryAllByText("Traditional Customs of Bulgaria");
+
+    expect(postTitle[0].textContent).toMatch(
+      /traditional customs of bulgaria/i,
+    );
+  });
 });
