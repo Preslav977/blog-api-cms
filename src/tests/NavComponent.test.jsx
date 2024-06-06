@@ -531,4 +531,44 @@ describe("Should render NavComponent", () => {
 
     expect(postTitle[0].textContent).toMatch(/bulgarian music folklore/i);
   });
+
+  it("should navigate to category folklore by clicking the category link of the post", async () => {
+    const router = createMemoryRouter(routes, {
+      initialEntries: [
+        "/home",
+        "/home/posts/category/66446821f1f4a04823a2bfe8",
+      ],
+      initialIndex: 0,
+    });
+
+    render(<RouterProvider router={router} />);
+
+    screen.debug();
+
+    const user = userEvent.setup();
+
+    let apiLoading = screen.queryAllByTestId("loading");
+
+    expect(apiLoading[0]).toBeInTheDocument();
+
+    await waitForElementToBeRemoved(() => screen.queryByTestId("loading"));
+
+    const readLink = screen.getByTestId("read");
+
+    await user.click(readLink);
+
+    const postCategoryLink = screen.queryAllByTestId("postCategory");
+
+    user.click(postCategoryLink[0]);
+
+    screen.debug();
+
+    const postCategory = screen.queryAllByText("folklore");
+
+    expect(postCategory[0].textContent).toMatch(/folklore/i);
+
+    const postTitle = screen.queryAllByText("Bulgaria - Myths and Legends");
+
+    expect(postTitle[0].textContent).toMatch(/bulgaria - myths and legends/i);
+  });
 });
