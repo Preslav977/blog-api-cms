@@ -1,0 +1,68 @@
+.authorSection {
+  max-width: var(--max-width-sub-content);
+  margin: var(--margin-default);
+  padding: var(--padding-content);
+}
+
+.authorContentWrapper {
+  display: flex;
+}
+
+.authorContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--author-content-gap);
+}
+
+.attentionAuthors {
+  outline: var(--article-category-outline);
+  padding: var(--attention-authors-padding);
+  box-shadow: var(--article-category-box-shadow);
+  text-transform: var(--article-category-text-transform);
+  background-color: var(--article-category-background-color);
+  display: inline-block;
+}
+
+.authorInformation {
+  width: var(--article-comments-width);
+}
+
+.authorAnchor {
+  text-decoration: underline;
+}
+
+.authorLink {
+  outline: var(--author-link-outline);
+  padding: var(--attention-authors-padding);
+  text-transform: var(--article-category-text-transform);
+}
+
+.authorSectionImg {
+  width: var(--article-comments-width);
+  aspect-ratio: var(--author-section-image-aspect-ratio);
+  object-fit: var(--author-section-image-object-fit);
+}
+
+.authorLink:hover {
+  background-color: var(--author-link-background-color);
+  color: var(--author-link-color);
+}
+
+@media screen and (max-width: 700px) {
+  .authorContentWrapper {
+    display: flex;
+    flex-direction: column;
+    margin-top: var(--article-category-margin-top);
+  }
+
+  .authorSectionImgContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .authorSectionImg {
+    width: var(--author-section-image-width);
+  }
+}

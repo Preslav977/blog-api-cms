@@ -2,13 +2,12 @@ import styles from "./FetchPosts.module.css";
 import { useEffect, useState } from "react";
 import { useOutletContext } from "react-router-dom";
 import PostComponent from "../PostComponent";
+import AuthorComponent from "../AuthorComponent";
 
 function FetchPosts() {
   const [posts, setPosts] = useOutletContext();
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
-
-  console.log(posts);
 
   useEffect(() => {
     fetch("http://localhost:3000/posts", { mode: "cors" })
@@ -42,6 +41,8 @@ function FetchPosts() {
           />
         ))}
       </div>
+      <hr />
+      <AuthorComponent />
     </main>
   );
 }
