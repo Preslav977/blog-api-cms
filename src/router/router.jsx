@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import LogInFormComponent from "../components/LogInFormComponent";
 import App from "../App";
 import NavComponent from "../components/NavComponent";
+import FetchPosts from "../components/api/FetchPosts";
 
 const router = createBrowserRouter([
   {
@@ -9,7 +10,16 @@ const router = createBrowserRouter([
     element: <App />,
     children: [
       { index: true, element: <LogInFormComponent /> },
-      { path: "/home", element: <NavComponent /> },
+      {
+        path: "/home",
+        element: (
+          <>
+            <NavComponent />
+            <FetchPosts />
+          </>
+        ),
+      },
+      // { path: "/home", element: <FetchPosts /> },
     ],
   },
 ]);
