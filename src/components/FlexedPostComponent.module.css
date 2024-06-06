@@ -1,0 +1,66 @@
+.mainPageFlexedPostContainer {
+  max-width: var(--max-width-content);
+  margin: var(--margin-default);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--flex-gap);
+  padding: var(--padding-content);
+  margin-bottom: var(--margin-bottom-posts);
+}
+
+.mainPageFlexedPostImg {
+  width: var(--main-page-flexed-image-width);
+}
+
+.mainPageFlexedPostInformation {
+  display: flex;
+  flex-direction: column;
+  gap: var(--main-page-flexed-gap);
+}
+
+.mainPageFlexCategory {
+  display: inline-block;
+  outline: var(--article-category-outline);
+  padding: var(--article-detailed-tags-padding);
+  box-shadow: var(--article-category-box-shadow);
+  text-transform: var(--article-detailed-tags-text-transform);
+  background-color: var(--article-category-background-color);
+}
+
+.postFlexedDescription {
+  line-height: var(--post-flexed-line-height);
+  height: var(--post-flexed-height);
+  overflow: var(--post-flexed-overflow);
+  width: var(--post-flexed-width);
+}
+
+@media screen and (max-width: 900px) {
+  .mainPageFlexedPostImg {
+    width: var(--grid-image-width);
+    max-width: var(--main-page-flexed-image-max-width);
+  }
+
+  .mainPageFlexedPostContainer {
+    display: block;
+  }
+
+  .mainPageFlexedPostContainer,
+  .mainPageFlexedPostInformation,
+  .mainPageFlexedPostInformation {
+    text-align: center;
+  }
+
+  .mainPageFlexedPostBody {
+    display: flex;
+    justify-content: center;
+  }
+
+  .mainPageFlexCategory {
+    margin-top: var(--main-page-flex-category-margin-top);
+  }
+
+  .postFlexedDescription {
+    width: var(--grid-image-width);
+  }
+}
