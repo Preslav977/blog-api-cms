@@ -305,4 +305,50 @@ describe("Should render NavComponent", () => {
       /vasil levski - unsurpassed in courage, defied an empire/i,
     );
   });
+
+  it("should navigate to Nature link and render a post by category", async () => {
+    const router = createMemoryRouter(routes, {
+      initialEntries: [
+        "/home",
+        "/home/posts/category/664468d2f1f4a04823a2c00c",
+      ],
+      initialIndex: 0,
+    });
+
+    render(<RouterProvider router={router} />);
+
+    // screen.debug();
+
+    let apiLoading = screen.queryByTestId("loading");
+
+    expect(apiLoading).toBeInTheDocument();
+
+    await waitForElementToBeRemoved(() => screen.queryByTestId("loading"));
+
+    const user = userEvent.setup();
+
+    const readLink = screen.getByTestId("read");
+
+    await user.click(readLink);
+
+    const natureLink = screen.queryAllByText("nature");
+
+    await user.click(natureLink[0]);
+
+    screen.debug();
+
+    apiLoading = screen.queryByTestId("loading");
+
+    expect(apiLoading).toBeInTheDocument();
+
+    await waitForElementToBeRemoved(() => screen.queryByTestId("loading"));
+
+    const postCategory = screen.queryAllByText("nature");
+
+    expect(postCategory[0].textContent).toMatch(/nature/i);
+
+    const postTitle = screen.queryAllByText("Pirin National Park");
+
+    expect(postTitle[0].textContent).toMatch(/pirin national park/i);
+  });
 });
