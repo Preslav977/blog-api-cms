@@ -5,6 +5,7 @@ import PostComponent from "../PostComponent";
 import AuthorComponent from "../AuthorComponent";
 import FlexedPostComponent from "../FlexedPostComponent";
 import FeaturedTagsComponent from "../FeaturedTagsComponent";
+import CommunityComponent from "../CommunityComponent";
 
 function FetchPosts() {
   const [posts, setPosts] = useOutletContext();
@@ -77,6 +78,7 @@ function FetchPosts() {
           />
         ))}
       </section>
+      <CommunityComponent />
     </main>
   );
 }
