@@ -55,4 +55,34 @@ describe("Should render NavComponent", () => {
     expect(screen.queryByText("Traditions").textContent).toMatch(/traditions/i);
     expect(screen.queryByText("Customs").textContent).toMatch(/customs/i);
   });
+
+  it("should render post besides navigation links", async () => {
+    const router = createMemoryRouter(routes, {
+      initialEntries: ["/home"],
+    });
+
+    render(<RouterProvider router={router} />);
+
+    const apiLoading = screen.queryByTestId("loading");
+
+    expect(apiLoading).toBeInTheDocument();
+
+    await waitForElementToBeRemoved(() => screen.queryByTestId("loading"));
+
+    const user = userEvent.setup();
+
+    const readLink = screen.getByTestId("read");
+
+    await user.click(readLink);
+
+    // screen.debug();
+
+    const postCategory = screen.queryAllByTestId("postCategory");
+
+    const postTitle = screen.queryAllByRole("heading", { level: 2 });
+
+    expect(postCategory[0]).toBeInTheDocument();
+
+    expect(postTitle[0]).toBeInTheDocument();
+  });
 });
