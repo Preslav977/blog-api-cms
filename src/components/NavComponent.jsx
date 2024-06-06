@@ -31,7 +31,7 @@ function NavComponent() {
               alt="down arrow dropdown"
             />
           </li>
-          <Link href="/">
+          <Link to="/home">
             <span className={styles.navMainPage}>
               <span className={styles.whiteBackground}>Bul</span>
               <span className={styles.redBackground}>gar</span>
@@ -92,7 +92,7 @@ function NavComponent() {
               alt="up arrow dropdown"
             />
           </li>
-          <Link href="/">
+          <Link to="/home">
             <span className={styles.navMainPage}>
               <span className={styles.whiteBackground}>Bul</span>
               <span className={styles.redBackground}>gar</span>
@@ -202,11 +202,11 @@ function NavComponent() {
                       <div className={styles.navPostDescription}>
                         <Link
                           data-testid="postCategory"
-                          to={`/posts/category/${post.category[0]._id}`}
+                          to={`/home/posts/category/${post.category[0]._id}`}
                         >
                           {post.category[0].category}
                         </Link>
-                        <Link to={`/posts/${post._id}`}>
+                        <Link to={`/home/posts/${post._id}`}>
                           <h2>{post.title}</h2>
                         </Link>
                       </div>

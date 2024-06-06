@@ -20,7 +20,10 @@ const router = createBrowserRouter([
           </>
         ),
       },
-      { path: "/home/posts/:id", element: <FetchSinglePost /> },
+      {
+        path: "/home/posts/:id",
+        element: <FetchSinglePost />,
+      },
     ],
   },
 ]);
