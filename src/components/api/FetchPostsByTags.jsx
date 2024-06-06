@@ -4,15 +4,15 @@ import { useOutletContext } from "react-router-dom";
 import FlexedPostComponent from "../FlexedPostComponent";
 import NavComponent from "../NavComponent";
 
-function FetchPostsByCategory() {
+function FetchPostsByTags() {
   const [posts, setPosts] = useOutletContext();
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  const { id } = useParams();
+  const { name } = useParams();
 
   useEffect(() => {
-    fetch(`http://localhost:3000/posts/category/${id}`, { mode: "cors" })
+    fetch(`http://localhost:3000/posts/tag/${name}`, { mode: "cors" })
       .then((response) => {
         if (response.status >= 400) {
           throw new Error("Server Error");
@@ -22,7 +22,7 @@ function FetchPostsByCategory() {
       .then((response) => setPosts(response))
       .catch((error) => setError(error))
       .finally(() => setLoading(false));
-  }, [id, setPosts]);
+  }, [name, setPosts]);
 
   if (loading) return <p data-testid="loading">Loading....</p>;
   if (error) return <p>A network error was encountered</p>;
@@ -34,13 +34,9 @@ function FetchPostsByCategory() {
         <FlexedPostComponent
           key={post._id}
           postId={`/home/posts/${post._id}`}
-          postImgPathId={`/home/posts/${post._id}`}
           postImgSrc={post.image_link}
           postCategory={post.category[0].category}
-          postCategoryPathId={`/home/posts/category/${post.category[0]._id}`}
-          postTitlePathId={`/home/posts/${post._id}`}
           postTitle={post.title}
-          postBodyPathId={`/home/posts/${post._id}`}
           postBody={post.body}
         />
       ))}
@@ -48,4 +44,4 @@ function FetchPostsByCategory() {
   );
 }
 
-export default FetchPostsByCategory;
+export default FetchPostsByTags;

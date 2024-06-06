@@ -55,9 +55,9 @@ function FetchPosts() {
             postImgSrc={post.image_link}
             postCategoryPathId={`/home/posts/category/${post.category[0]._id}`}
             postCategory={post.category[0].category}
-            postTitlePathId={`/posts/${post._id}`}
+            postTitlePathId={`/home/posts/${post._id}`}
             postTitle={post.title}
-            postBodyPathId={`/posts/${post._id}`}
+            postBodyPathId={`/home/posts/${post._id}`}
             postBody={post.body}
           />
         ))}

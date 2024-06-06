@@ -119,13 +119,13 @@ function NavComponent() {
                 ) : (
                   <div className={styles.loggedInToggleDropDown}>
                     <li>
-                      <Link to="/create">Create Post</Link>
+                      <Link to="/home/create">Create Post</Link>
                     </li>
                     <li>
-                      <Link to="/account">Account</Link>
+                      <Link to="/home/account">Account</Link>
                     </li>
                     <li>
-                      <Link to="/logout">Logout</Link>
+                      <Link to="/home/logout">Logout</Link>
                     </li>
                   </div>
                 )}
@@ -145,43 +145,43 @@ function NavComponent() {
                 <h2>Topics</h2>
                 <Link
                   data-testid="folklore"
-                  to="/posts/category/66446821f1f4a04823a2bfe8"
+                  to="/home/posts/category/66446821f1f4a04823a2bfe8"
                 >
                   Folklore
                 </Link>
                 <Link
                   data-testid="folklore music"
-                  to="/posts/category/6644689bf1f4a04823a2bffa"
+                  to="/home/posts/category/6644689bf1f4a04823a2bffa"
                 >
                   Folklore Music
                 </Link>
                 <Link
                   data-testid="culture"
-                  to="/posts/category/66446958f1f4a04823a2c030"
+                  to="/home/posts/category/66446958f1f4a04823a2c030"
                 >
                   Culture
                 </Link>
                 <Link
                   data-testid="history"
-                  to="/posts/category/6644691ff1f4a04823a2c01e"
+                  to="/home/posts/category/6644691ff1f4a04823a2c01e"
                 >
                   History
                 </Link>
                 <Link
                   data-testid="nature"
-                  to="/posts/category/664468d2f1f4a04823a2c00c"
+                  to="/home/posts/category/664468d2f1f4a04823a2c00c"
                 >
                   Nature
                 </Link>
                 <Link
                   data-testid="traditions"
-                  to="/posts/category/664469abf1f4a04823a2c042"
+                  to="/home/posts/category/664469abf1f4a04823a2c042"
                 >
                   Traditions
                 </Link>
                 <Link
                   data-testid="customs"
-                  to="/posts/category/66446a59f1f4a04823a2c07d"
+                  to="/home/posts/category/66446a59f1f4a04823a2c07d"
                 >
                   Customs
                 </Link>
@@ -190,7 +190,10 @@ function NavComponent() {
                 {posts.slice(0, 2).map((post) => (
                   <article className={styles.navPostArticles} key={post._id}>
                     <figure className={styles.navPostImgContainer}>
-                      <Link data-testid="navPostImg" to={`/posts/${post._id}`}>
+                      <Link
+                        data-testid="navPostImg"
+                        to={`/home/posts/${post._id}`}
+                      >
                         <img
                           className={styles.navPostImg}
                           src={post.image_link}
@@ -202,7 +205,7 @@ function NavComponent() {
                       <div className={styles.navPostDescription}>
                         <Link
                           data-testid="postCategory"
-                          to={`/home/posts/category/${post.category[0]._id}`}
+                          to={`/home/home/posts/category/${post.category[0]._id}`}
                         >
                           {post.category[0].category}
                         </Link>
