@@ -478,7 +478,7 @@ describe("Should render NavComponent", () => {
 
     await waitForElementToBeRemoved(() => screen.queryByTestId("loading"));
 
-    screen.debug();
+    // screen.debug();
 
     const postCategory = screen.queryAllByText("folklore");
 
@@ -487,5 +487,48 @@ describe("Should render NavComponent", () => {
     const postTitle = screen.queryAllByText("Bulgaria - Myths and Legends");
 
     expect(postTitle[0].textContent).toMatch(/bulgaria - myths and legends/i);
+  });
+
+  it("should navigate to Post Bulgarian Music Folklore", async () => {
+    const router = createMemoryRouter(routes, {
+      initialEntries: ["/home", "/home/posts/66446886f1f4a04823a2bff3"],
+      initialIndex: 0,
+    });
+
+    render(<RouterProvider router={router} />);
+
+    // screen.debug();
+
+    let apiLoading = screen.queryByTestId("loading");
+
+    expect(apiLoading).toBeInTheDocument();
+
+    await waitForElementToBeRemoved(() => screen.queryByTestId("loading"));
+
+    const user = userEvent.setup();
+
+    const readLink = screen.getByTestId("read");
+
+    await user.click(readLink);
+
+    const navPostImgLink = screen.queryAllByTestId("navPostImg");
+
+    await user.click(navPostImgLink[1]);
+
+    apiLoading = screen.queryByTestId("loading");
+
+    expect(apiLoading).toBeInTheDocument();
+
+    await waitForElementToBeRemoved(() => screen.queryByTestId("loading"));
+
+    screen.debug();
+
+    const postCategory = screen.queryAllByText("folklore music");
+
+    expect(postCategory[0].textContent).toMatch(/folklore music/i);
+
+    const postTitle = screen.queryAllByText("Bulgarian Music Folklore");
+
+    expect(postTitle[0].textContent).toMatch(/bulgarian music folklore/i);
   });
 });
