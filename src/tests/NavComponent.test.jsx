@@ -571,4 +571,56 @@ describe("Should render NavComponent", () => {
 
     expect(postTitle[0].textContent).toMatch(/bulgaria - myths and legends/i);
   });
+
+  it("should navigate to category folklore music by clicking the category link of the post", async () => {
+    const router = createMemoryRouter(routes, {
+      initialEntries: [
+        "/home",
+        "/home/posts/category/66446821f1f4a04823a2bfe8",
+      ],
+      initialIndex: 0,
+    });
+
+    render(<RouterProvider router={router} />);
+
+    // screen.debug();
+
+    let apiLoading = screen.queryByTestId("loading");
+
+    expect(apiLoading).toBeInTheDocument();
+
+    await waitForElementToBeRemoved(() => screen.queryByTestId("loading"));
+
+    const user = userEvent.setup();
+
+    // const apiLoading = screen.queryByTestId("loading");
+
+    // expect(apiLoading).toBeInTheDocument();
+
+    // await waitForElementToBeRemoved(() => screen.queryByTestId("loading"));
+
+    const readLink = screen.getByTestId("read");
+
+    await user.click(readLink);
+
+    const postCategoryLink = screen.queryAllByTestId("postCategory");
+
+    await user.click(postCategoryLink[1]);
+
+    apiLoading = screen.queryByTestId("loading");
+
+    expect(apiLoading).toBeInTheDocument();
+
+    await waitForElementToBeRemoved(() => screen.queryByTestId("loading"));
+
+    screen.debug();
+
+    const postCategory = screen.queryByText("folklore music");
+
+    expect(postCategory.textContent).toMatch(/folklore music/i);
+
+    const postTitle = screen.queryAllByText("Bulgarian Music Folklore");
+
+    expect(postTitle[0].textContent).toMatch(/bulgarian music folklore/i);
+  });
 });

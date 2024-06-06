@@ -205,7 +205,7 @@ function NavComponent() {
                       <div className={styles.navPostDescription}>
                         <Link
                           data-testid="postCategory"
-                          to={`/home/home/posts/category/${post.category[0]._id}`}
+                          to={`/home/posts/category/${post.category[0]._id}`}
                         >
                           {post.category[0].category}
                         </Link>
