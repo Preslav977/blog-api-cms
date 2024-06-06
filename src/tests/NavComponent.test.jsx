@@ -445,4 +445,47 @@ describe("Should render NavComponent", () => {
       /traditional customs of bulgaria/i,
     );
   });
+
+  it("should navigate to Post Bulgaria - Myths and Legends", async () => {
+    const router = createMemoryRouter(routes, {
+      initialEntries: ["/home", "/home/posts/664467ebf1f4a04823a2bfe1"],
+      initialIndex: 0,
+    });
+
+    render(<RouterProvider router={router} />);
+
+    // screen.debug();
+
+    let apiLoading = screen.queryByTestId("loading");
+
+    expect(apiLoading).toBeInTheDocument();
+
+    await waitForElementToBeRemoved(() => screen.queryByTestId("loading"));
+
+    const user = userEvent.setup();
+
+    const readLink = screen.getByTestId("read");
+
+    await user.click(readLink);
+
+    const navPostImgLink = screen.queryAllByTestId("navPostImg");
+
+    await user.click(navPostImgLink[0]);
+
+    apiLoading = screen.queryByTestId("loading");
+
+    expect(apiLoading).toBeInTheDocument();
+
+    await waitForElementToBeRemoved(() => screen.queryByTestId("loading"));
+
+    screen.debug();
+
+    const postCategory = screen.queryAllByText("folklore");
+
+    expect(postCategory[0].textContent).toMatch(/folklore/i);
+
+    const postTitle = screen.queryAllByText("Bulgaria - Myths and Legends");
+
+    expect(postTitle[0].textContent).toMatch(/bulgaria - myths and legends/i);
+  });
 });
