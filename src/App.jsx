@@ -10,6 +10,20 @@ function App() {
 
   const [loggedInUser, setLoggedInUser] = React.useState([]);
 
+  const [createPost, setCreatePost] = React.useState([
+    {
+      title: "",
+      author: "",
+      body: "",
+      category: [""],
+      tags: [""],
+      image_link: "",
+      image_owner: "",
+      image_source: "",
+      privacy: false,
+    },
+  ]);
+
   return (
     <>
       <Outlet
@@ -20,6 +34,8 @@ function App() {
           setIsUserLoggedIn,
           loggedInUser,
           setLoggedInUser,
+          createPost,
+          setCreatePost,
         ]}
       />
       <FooterComponent />

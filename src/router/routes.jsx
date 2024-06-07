@@ -5,6 +5,7 @@ import FetchSinglePost from "../components/api/FetchSinglePost";
 import FetchPostsByCategory from "../components/api/FetchPostsByCategory";
 import FetchPostsByTags from "../components/api/FetchPostsByTags";
 import UserDashboardComponent from "../components/UserDashboardComponent";
+import CreatePostComponent from "../components/CreatePostComponent";
 
 const routes = [
   {
@@ -23,6 +24,7 @@ const routes = [
       { path: "home/posts/category/:id", element: <FetchPostsByCategory /> },
       { path: "/home/posts/tag/:name", element: <FetchPostsByTags /> },
       { path: "/home/account", element: <UserDashboardComponent /> },
+      { path: "/home/create", element: <CreatePostComponent /> },
     ],
   },
 ];
