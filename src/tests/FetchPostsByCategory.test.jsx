@@ -169,4 +169,52 @@ describe("should render FlexedComponent posts by category", () => {
 
     expect(postImg).toBeInTheDocument();
   });
+
+  it("should render culture posts category on the main page", async () => {
+    const router = createMemoryRouter(routes, {
+      initialEntries: [
+        "/home",
+        "/home/posts/category/66446958f1f4a04823a2c030",
+      ],
+      initialIndex: 1,
+    });
+
+    render(<RouterProvider router={router} />);
+
+    const apiLoading = screen.queryByTestId("loading");
+
+    expect(apiLoading).toBeInTheDocument();
+
+    await waitForElementToBeRemoved(() => screen.queryByTestId("loading"));
+
+    const postImg = screen.getAllByTestId("postImg");
+
+    const postCategory = screen.queryAllByText("culture");
+
+    const postTitle = screen.queryByText(
+      "Saint Sofia Church – the oldest operating church in Europe",
+    );
+
+    const postTitleOne = screen.queryByText("The orthodox icons of Bulgaria");
+
+    const postBody = screen.getAllByTestId("postBody");
+
+    expect(postCategory[0].textContent).toEqual("culture");
+
+    expect(postCategory[1].textContent).toEqual("culture");
+
+    expect(postTitle.textContent).toEqual(
+      "Saint Sofia Church – the oldest operating church in Europe",
+    );
+
+    expect(postTitleOne.textContent).toEqual("The orthodox icons of Bulgaria");
+
+    expect(postBody[0]).toBeInTheDocument();
+
+    expect(postBody[1]).toBeInTheDocument();
+
+    expect(postImg[0]).toBeInTheDocument();
+
+    expect(postImg[1]).toBeInTheDocument();
+  });
 });
