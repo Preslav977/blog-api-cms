@@ -41,4 +41,38 @@ describe("should render FlexedComponent posts by category", () => {
 
     expect(postImg).toBeInTheDocument();
   });
+
+  it("should render folklore music post category on the main page", async () => {
+    const router = createMemoryRouter(routes, {
+      initialEntries: [
+        "/home",
+        "/home/posts/category/6644689bf1f4a04823a2bffa",
+      ],
+      initialIndex: 1,
+    });
+
+    render(<RouterProvider router={router} />);
+
+    const apiLoading = screen.queryByTestId("loading");
+
+    expect(apiLoading).toBeInTheDocument();
+
+    await waitForElementToBeRemoved(() => screen.queryByTestId("loading"));
+
+    const postImg = screen.getByTestId("postImg");
+
+    const postCategory = screen.queryByText("folklore music");
+
+    const postTitle = screen.queryByText("Bulgarian Music Folklore");
+
+    const postBody = screen.getByTestId("postBody");
+
+    expect(postCategory.textContent).toEqual("folklore music");
+
+    expect(postTitle.textContent).toEqual("Bulgarian Music Folklore");
+
+    expect(postBody).toBeInTheDocument();
+
+    expect(postImg).toBeInTheDocument();
+  });
 });
