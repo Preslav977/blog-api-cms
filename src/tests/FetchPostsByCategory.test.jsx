@@ -251,4 +251,38 @@ describe("should render FlexedComponent posts by category", () => {
 
     expect(postImg).toBeInTheDocument();
   });
+
+  it("should render custom post category on the main page", async () => {
+    const router = createMemoryRouter(routes, {
+      initialEntries: [
+        "/home",
+        "/home/posts/category/66446a59f1f4a04823a2c07d",
+      ],
+      initialIndex: 1,
+    });
+
+    render(<RouterProvider router={router} />);
+
+    const apiLoading = screen.queryByTestId("loading");
+
+    expect(apiLoading).toBeInTheDocument();
+
+    await waitForElementToBeRemoved(() => screen.queryByTestId("loading"));
+
+    const postImg = screen.getByTestId("postImg");
+
+    const postCategory = screen.queryByText("customs");
+
+    const postTitle = screen.queryByText("Traditional Customs of Bulgaria");
+
+    const postBody = screen.getByTestId("postBody");
+
+    expect(postCategory.textContent).toEqual("customs");
+
+    expect(postTitle.textContent).toEqual("Traditional Customs of Bulgaria");
+
+    expect(postBody).toBeInTheDocument();
+
+    expect(postImg).toBeInTheDocument();
+  });
 });
