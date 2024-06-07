@@ -9,82 +9,94 @@ import userEvent from "@testing-library/user-event";
 import routes from "../router/routes";
 
 describe("Should render NavComponent", () => {
-  // it("should render NavComponent", () => {
-  //   const router = createMemoryRouter(routes, {
-  //     initialEntries: ["/home"],
-  //   });
+  it("should render NavComponent", async () => {
+    const router = createMemoryRouter(routes, {
+      initialEntries: ["/home"],
+    });
 
-  //   render(<RouterProvider router={router} />);
+    render(<RouterProvider router={router} />);
 
-  //   // screen.debug();
+    // screen.debug();
 
-  //   expect(screen.queryByText("Read").textContent).toMatch(/read/i);
+    const apiLoading = screen.queryByTestId("loading");
 
-  //   expect(screen.queryByText("Bul").textContent).toMatch(/bul/i);
+    expect(apiLoading).toBeInTheDocument();
 
-  //   expect(screen.queryByText("gar").textContent).toMatch(/gar/i);
+    await waitForElementToBeRemoved(() => screen.queryByTestId("loading"));
 
-  //   expect(screen.queryByText("ian").textContent).toMatch(/ian/i);
+    expect(screen.queryByText("Read").textContent).toMatch(/read/i);
 
-  //   expect(screen.queryByRole("button")).not.toBeInTheDocument();
-  // });
+    expect(screen.queryByText("Bul").textContent).toMatch(/bul/i);
 
-  // it("should render NavComponent navigation links", async () => {
-  //   const router = createMemoryRouter(routes, {
-  //     initialEntries: ["/home"],
-  //   });
+    expect(screen.queryByText("gar").textContent).toMatch(/gar/i);
 
-  //   render(<RouterProvider router={router} />);
+    expect(screen.queryByText("ian").textContent).toMatch(/ian/i);
 
-  //   const user = userEvent.setup();
+    expect(screen.queryByRole("button")).not.toBeInTheDocument();
+  });
 
-  //   const readLink = screen.getByTestId("read");
+  it("should render NavComponent navigation links", async () => {
+    const router = createMemoryRouter(routes, {
+      initialEntries: ["/home"],
+    });
 
-  //   await user.click(readLink);
+    render(<RouterProvider router={router} />);
 
-  //   expect(screen.queryByText("Topics").textContent).toMatch(/topics/i);
+    const user = userEvent.setup();
 
-  //   expect(screen.queryByText("Folklore").textContent).toMatch(/folklore/i);
-  //   expect(screen.queryByText("Folklore Music").textContent).toMatch(
-  //     /Folklore Music/i,
-  //   );
+    const apiLoading = screen.queryByTestId("loading");
 
-  //   expect(screen.queryByText("Culture").textContent).toMatch(/culture/i);
-  //   expect(screen.queryByText("History").textContent).toMatch(/history/i);
-  //   expect(screen.queryByText("Nature").textContent).toMatch(/nature/i);
-  //   expect(screen.queryByText("Traditions").textContent).toMatch(/traditions/i);
-  //   expect(screen.queryByText("Customs").textContent).toMatch(/customs/i);
-  // });
+    expect(apiLoading).toBeInTheDocument();
 
-  // it("should render post besides navigation links", async () => {
-  //   const router = createMemoryRouter(routes, {
-  //     initialEntries: ["/home"],
-  //   });
+    await waitForElementToBeRemoved(() => screen.queryByTestId("loading"));
 
-  //   render(<RouterProvider router={router} />);
+    const readLink = screen.getByTestId("read");
 
-  //   const apiLoading = screen.queryByTestId("loading");
+    await user.click(readLink);
 
-  //   expect(apiLoading).toBeInTheDocument();
+    expect(screen.queryByText("Topics").textContent).toMatch(/topics/i);
 
-  //   await waitForElementToBeRemoved(() => screen.queryByTestId("loading"));
+    expect(screen.queryByText("Folklore").textContent).toMatch(/folklore/i);
+    expect(screen.queryByText("Folklore Music").textContent).toMatch(
+      /Folklore Music/i,
+    );
 
-  //   const user = userEvent.setup();
+    expect(screen.queryByText("Culture").textContent).toMatch(/culture/i);
+    expect(screen.queryByText("History").textContent).toMatch(/history/i);
+    expect(screen.queryByText("Nature").textContent).toMatch(/nature/i);
+    expect(screen.queryByText("Traditions").textContent).toMatch(/traditions/i);
+    expect(screen.queryByText("Customs").textContent).toMatch(/customs/i);
+  });
 
-  //   const readLink = screen.getByTestId("read");
+  it("should render post besides navigation links", async () => {
+    const router = createMemoryRouter(routes, {
+      initialEntries: ["/home"],
+    });
 
-  //   await user.click(readLink);
+    render(<RouterProvider router={router} />);
 
-  //   // screen.debug();
+    const apiLoading = screen.queryByTestId("loading");
 
-  //   const postCategory = screen.queryAllByTestId("postCategory");
+    expect(apiLoading).toBeInTheDocument();
 
-  //   const postTitle = screen.queryAllByRole("heading", { level: 2 });
+    await waitForElementToBeRemoved(() => screen.queryByTestId("loading"));
 
-  //   expect(postCategory[0]).toBeInTheDocument();
+    const user = userEvent.setup();
 
-  //   expect(postTitle[0]).toBeInTheDocument();
-  // });
+    const readLink = screen.getByTestId("read");
+
+    await user.click(readLink);
+
+    // screen.debug();
+
+    const postCategory = screen.queryAllByTestId("postCategory");
+
+    const postTitle = screen.queryAllByRole("heading", { level: 2 });
+
+    expect(postCategory[0]).toBeInTheDocument();
+
+    expect(postTitle[0]).toBeInTheDocument();
+  });
 
   it("should navigate to Folklore link and render a post by category", async () => {
     const router = createMemoryRouter(routes, {

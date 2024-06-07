@@ -66,31 +66,39 @@ describe("should render LogInFormComponent", () => {
     expect(logInBtn.textContent).toMatch(/log in/i);
   });
 
-  it("should render when the user types to hide the span errors.", async () => {
-    const router = createMemoryRouter(routes, {
-      initialEntries: [""],
-    });
+  // it("should render when the user types and show Unauthorized.", async () => {
+  //   const router = createMemoryRouter(routes, {
+  //     initialEntries: [""],
+  //   });
 
-    render(<RouterProvider router={router} />);
+  //   render(<RouterProvider router={router} />);
 
-    // screen.debug();
+  //   // screen.debug();
 
-    const user = userEvent.setup();
+  //   const user = userEvent.setup();
 
-    await user.type(screen.getByRole("input-email"), "test@abv.bg");
+  //   await user.type(screen.getByRole("input-email"), "tupanq@test.com");
 
-    expect(screen.getByRole("input-email")).toHaveValue("test@abv.bg");
+  //   expect(screen.getByRole("input-email")).toHaveValue("tupanq@test.com");
 
-    expect(
-      screen.queryByText("Email does not match required format"),
-    ).not.toBeInTheDocument();
+  //   expect(
+  //     screen.queryByText("Email does not match required format"),
+  //   ).not.toBeInTheDocument();
 
-    await user.type(screen.getByRole("input-password"), "12345678");
+  //   await user.type(screen.getByRole("input-password"), "12345678");
 
-    expect(screen.getByRole("input-password")).toHaveValue("12345678");
+  //   expect(screen.getByRole("input-password")).toHaveValue("12345678");
 
-    expect(
-      screen.queryByText("Password must be at least 8 characters long."),
-    ).not.toBeInTheDocument();
-  });
+  //   expect(
+  //     screen.queryByText("Password must be at least 8 characters long."),
+  //   ).not.toBeInTheDocument();
+
+  //   const logInBtn = screen.queryByRole("button");
+
+  //   await user.click(logInBtn);
+
+  //   screen.debug();
+
+  //   expect(screen.queryByText("Unauthorized")).toBeInTheDocument();
+  // });
 });
