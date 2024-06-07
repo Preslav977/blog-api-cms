@@ -170,4 +170,53 @@ describe("Should render FetchPosts component", () => {
 
     expect(screen.queryByText("#pleven").textContent).toMatch(/#pleven/i);
   });
+
+  it("should render fourth post on the main page", async () => {
+    const router = createMemoryRouter(routes, {
+      initialEntries: ["/home", "/home/posts/664468bef1f4a04823a2c005"],
+      initialIndex: 1,
+    });
+
+    render(<RouterProvider router={router} />);
+
+    const apiLoading = screen.queryByTestId("loading");
+
+    expect(apiLoading).toBeInTheDocument();
+
+    await waitForElementToBeRemoved(() => screen.queryByTestId("loading"));
+
+    screen.debug();
+
+    const postImg = screen.getByTestId("postImg");
+
+    const postCategory = screen.queryByText("nature");
+
+    const postTitle = screen.queryByText("Pirin National Park");
+
+    const postBody = screen.getByTestId("postBody");
+
+    expect(postCategory.textContent).toEqual("nature");
+
+    expect(postTitle.textContent).toEqual("Pirin National Park");
+
+    expect(postBody).toBeInTheDocument();
+
+    expect(postImg).toBeInTheDocument();
+
+    expect(screen.queryByText("Preslaw").textContent).toMatch(/preslaw/i);
+
+    expect(screen.queryByText("Cvetanow").textContent).toMatch(/cvetanow/i);
+
+    expect(
+      screen.queryByText("Photo by Bulgaria Travel Org").textContent,
+    ).toMatch(/photo by bulgaria travel org/i);
+
+    screen.debug();
+
+    expect(screen.queryByText("#bulgaria").textContent).toMatch(/#bulgaria/i);
+
+    expect(screen.queryByText("#nature").textContent).toMatch(/#nature/i);
+
+    expect(screen.queryByText("#history").textContent).toMatch(/#history/i);
+  });
 });
