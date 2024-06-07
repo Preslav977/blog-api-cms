@@ -1,5 +1,5 @@
 import styles from "./LogInFormComponent.module.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate, useOutletContext } from "react-router-dom";
 
 function LogInFormComponent() {
@@ -10,6 +10,10 @@ function LogInFormComponent() {
   const [IsUserLoggedIn, setIsUserLoggedIn] = useOutletContext();
 
   const [error, setError] = useState(null);
+
+  const [loading, setLoading] = useState(true);
+
+  const [loggedInUser, setLoggedInUser] = useOutletContext();
 
   const navigate = useNavigate();
 
@@ -51,6 +55,24 @@ function LogInFormComponent() {
       //
     }
   }
+
+  useEffect(() => {
+    fetch("http://localhost:3000/user", {
+      headers: {
+        Authorization: localStorage.getItem("token"),
+      },
+      mode: "cors",
+    })
+      .then((response) => {
+        if (response.status >= 400) {
+          throw new Error("Server Error");
+        }
+        return response.json();
+      })
+      .then((response) => setLoggedInUser(response))
+      .catch((error) => setError(error))
+      .finally(() => setLoading(false));
+  }, [setLoggedInUser]);
 
   return (
     <div className={styles.logInFormWrapper}>

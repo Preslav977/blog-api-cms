@@ -8,9 +8,20 @@ function App() {
 
   const [IsUserLoggedIn, setIsUserLoggedIn] = React.useState(false);
 
+  const [loggedInUser, setLoggedInUser] = React.useState([]);
+
   return (
     <>
-      <Outlet context={[posts, setPosts, IsUserLoggedIn, setIsUserLoggedIn]} />
+      <Outlet
+        context={[
+          posts,
+          setPosts,
+          IsUserLoggedIn,
+          setIsUserLoggedIn,
+          loggedInUser,
+          setLoggedInUser,
+        ]}
+      />
       <FooterComponent />
     </>
   );

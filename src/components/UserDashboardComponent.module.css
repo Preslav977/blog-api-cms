@@ -1,0 +1,71 @@
+.userDashboardWrapper {
+  min-height: var(--login-form-min-height);
+}
+
+.userDashboardContainer {
+  max-width: var(--max-width-page);
+  margin: var(--margin-default);
+  padding: var(--padding-content);
+  margin-top: var(--login-form-margin-top);
+}
+
+.greetingUserContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--greeting-user-gap);
+}
+
+.userWarningParagraph {
+  width: var(--user-warning-width);
+  text-align: center;
+}
+
+.userInformationHeader {
+  margin-top: 1.5em;
+  margin-bottom: var(--form-content-margin-bottom);
+}
+
+.userDashboardContent {
+  display: flex;
+}
+
+.userDashboardLeftContent {
+  display: flex;
+  flex-direction: column;
+  gap: var(--user-dashboard-left-gap);
+  margin-right: var(--user-dashboard-left-margin-right);
+}
+
+.userDashboardRightContent {
+  display: flex;
+  flex-direction: column;
+  gap: var(--user-dashboard-left-gap);
+}
+
+.userLabel {
+  line-height: var(--user-label-line-height);
+}
+
+.userInformation {
+  margin-bottom: var(--form-content-margin-bottom);
+}
+
+.userLink {
+  outline: 1px solid black;
+  padding: var(--attention-authors-padding);
+  text-transform: var(--article-category-text-transform);
+  font-size: var(--error-span-font-size);
+}
+
+.userLink:hover {
+  background-color: var(--author-link-background-color);
+  color: var(--author-link-color);
+}
+
+@media screen and (max-width: 470px) {
+  .userLink {
+    font-size: 0.6rem;
+  }
+}
