@@ -1,10 +1,10 @@
 import App from "../App";
 import LogInFormComponent from "../components/LogInFormComponent";
-import NavComponent from "../components/NavComponent";
 import FetchPosts from "../components/api/FetchPosts";
 import FetchSinglePost from "../components/api/FetchSinglePost";
 import FetchPostsByCategory from "../components/api/FetchPostsByCategory";
 import FetchPostsByTags from "../components/api/FetchPostsByTags";
+import UserDashboardComponent from "../components/UserDashboardComponent";
 
 const routes = [
   {
@@ -14,12 +14,7 @@ const routes = [
       { index: true, element: <LogInFormComponent /> },
       {
         path: "/home",
-        element: (
-          <>
-            {/* <NavComponent /> */}
-            <FetchPosts />
-          </>
-        ),
+        element: <FetchPosts />,
       },
       {
         path: "/home/posts/:id",
@@ -27,6 +22,7 @@ const routes = [
       },
       { path: "home/posts/category/:id", element: <FetchPostsByCategory /> },
       { path: "/home/posts/tag/:name", element: <FetchPostsByTags /> },
+      { path: "/home/account", element: <UserDashboardComponent /> },
     ],
   },
 ];

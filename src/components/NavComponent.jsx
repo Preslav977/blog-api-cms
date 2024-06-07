@@ -59,13 +59,13 @@ function NavComponent() {
                 ) : (
                   <div className={styles.loggedInToggleDropDown}>
                     <li>
-                      <Link to="/create">Create Post</Link>
+                      <Link to="/home/create">Create Post</Link>
                     </li>
                     <li>
-                      <Link to="/account">Account</Link>
+                      <Link to="/home/account">Account</Link>
                     </li>
                     <li>
-                      <Link to="/logout">Logout</Link>
+                      <Link to="/home/logout">Logout</Link>
                     </li>
                   </div>
                 )}

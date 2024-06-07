@@ -1,11 +1,12 @@
 import { createBrowserRouter } from "react-router-dom";
 import LogInFormComponent from "../components/LogInFormComponent";
 import App from "../App";
-import NavComponent from "../components/NavComponent";
+
 import FetchPosts from "../components/api/FetchPosts";
 import FetchSinglePost from "../components/api/FetchSinglePost";
 import FetchPostsByCategory from "../components/api/FetchPostsByCategory";
 import FetchPostsByTags from "../components/api/FetchPostsByTags";
+import UserDashboardComponent from "../components/UserDashboardComponent";
 
 const router = createBrowserRouter([
   {
@@ -15,12 +16,7 @@ const router = createBrowserRouter([
       { index: true, element: <LogInFormComponent /> },
       {
         path: "/home",
-        element: (
-          <>
-            {/* <NavComponent /> */}
-            <FetchPosts />
-          </>
-        ),
+        element: <FetchPosts />,
       },
       {
         path: "/home/posts/:id",
@@ -29,6 +25,7 @@ const router = createBrowserRouter([
 
       { path: "/home/posts/category/:id", element: <FetchPostsByCategory /> },
       { path: "/home/posts/tag/:name", element: <FetchPostsByTags /> },
+      { path: "/home/account", element: <UserDashboardComponent /> },
     ],
   },
 ]);
