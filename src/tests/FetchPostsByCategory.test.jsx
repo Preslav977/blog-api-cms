@@ -217,4 +217,38 @@ describe("should render FlexedComponent posts by category", () => {
 
     expect(postImg[1]).toBeInTheDocument();
   });
+
+  it("should render traditions post category on the main page", async () => {
+    const router = createMemoryRouter(routes, {
+      initialEntries: [
+        "/home",
+        "/home/posts/category/664469abf1f4a04823a2c042",
+      ],
+      initialIndex: 1,
+    });
+
+    render(<RouterProvider router={router} />);
+
+    const apiLoading = screen.queryByTestId("loading");
+
+    expect(apiLoading).toBeInTheDocument();
+
+    await waitForElementToBeRemoved(() => screen.queryByTestId("loading"));
+
+    const postImg = screen.getByTestId("postImg");
+
+    const postCategory = screen.queryByText("traditions");
+
+    const postTitle = screen.queryByText("The bulgarian feasts");
+
+    const postBody = screen.getByTestId("postBody");
+
+    expect(postCategory.textContent).toEqual("traditions");
+
+    expect(postTitle.textContent).toEqual("The bulgarian feasts");
+
+    expect(postBody).toBeInTheDocument();
+
+    expect(postImg).toBeInTheDocument();
+  });
 });
