@@ -1,0 +1,57 @@
+.creatingPostContainer {
+  max-width: var(--max-width-content);
+  margin: 0 auto;
+  padding: 0px 1rem 0px 1rem;
+}
+
+.creatingPostHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.createPostFormLivePreviewContainer {
+  display: flex;
+  max-width: 1200px;
+}
+
+.formContainer {
+  max-width: 600px;
+  /* margin: 0 auto; */
+  width: 100%;
+  margin-top: 2em;
+}
+
+.createPostForm {
+  display: flex;
+  flex-direction: column;
+  margin-right: 1em;
+  gap: 1.5em;
+}
+
+.formWrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.formWrapperCheckbox {
+  display: flex;
+  gap: 0.5em;
+}
+
+input,
+button,
+select {
+  padding: 0.5em;
+}
+
+textarea {
+  min-height: 50px;
+  max-height: 400px;
+  resize: vertical;
+}
+
+.testing {
+  margin: 0 auto;
+  margin-top: 2em;
+}

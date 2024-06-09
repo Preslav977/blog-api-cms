@@ -13,7 +13,7 @@ function LogInFormComponent() {
 
   const [loading, setLoading] = useState(true);
 
-  const [loggedInUser, setLoggedInUser] = useOutletContext();
+  const [, , , , loggedInUser, setLoggedInUser] = useOutletContext();
 
   const navigate = useNavigate();
 

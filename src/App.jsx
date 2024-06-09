@@ -15,12 +15,13 @@ function App() {
       title: "",
       author: "",
       body: "",
-      category: [""],
-      tags: [""],
+      category: [],
+      tags: "",
       image_link: "",
       image_owner: "",
       image_source: "",
       privacy: false,
+      comments: [],
     },
   ]);
 
