@@ -45,19 +45,23 @@ function CreatePostComponent() {
 
     const postCategory = FormDataObject.get("category");
 
-    console.log(postCategory);
-
     const postTags = FormDataObject.get("tags");
 
     const postImage_Link = FormDataObject.get("image_link");
-
-    console.log(postImage_Link);
 
     const postImage_Owner = FormDataObject.get("image_owner");
 
     const postImage_Source = FormDataObject.get("image_source");
 
-    // const postPrivacy = FormDataObject.get("privacy");
+    let postPrivacy = FormDataObject.get("privacy");
+
+    if (postPrivacy === "on") {
+      postPrivacy = true;
+    } else {
+      postPrivacy = false;
+    }
+
+    console.log(postPrivacy);
 
     const createPostObject = {
       ...createPost,
@@ -69,7 +73,7 @@ function CreatePostComponent() {
       image_link: postImage_Link,
       image_owner: postImage_Owner,
       image_source: postImage_Source,
-      privacy: false,
+      privacy: postPrivacy,
     };
 
     setCreatePost(createPostObject);
@@ -90,8 +94,8 @@ function CreatePostComponent() {
           image_link: postImage_Link,
           image_owner: postImage_Owner,
           image_source: postImage_Source,
-          privacy: false,
-          // privacy: postPrivacy
+          // privacy: false,
+          privacy: postPrivacy,
         }),
       });
 
