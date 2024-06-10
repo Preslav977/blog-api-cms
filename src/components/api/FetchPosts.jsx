@@ -81,6 +81,27 @@ function FetchPosts() {
             />
           ))}
         </section>
+        <section>
+          {posts.slice(10, 15).map((post) => (
+            <section key={post._id}>
+              {!post.privacy ? (
+                <FlexedPostComponent
+                  key={post._id}
+                  postImgPathId={`/home/posts/${post._id}`}
+                  postImgSrc={post.image_link}
+                  postCategoryPathId={`/home/posts/category/${post.category[0]._id}`}
+                  postCategory={post.category[0].category}
+                  postTitlePathId={`/home/posts/${post._id}`}
+                  postTitle={post.title}
+                  postBodyPathId={`/home/posts/${post._id}`}
+                  postBody={post.body}
+                />
+              ) : (
+                ""
+              )}
+            </section>
+          ))}
+        </section>
         <CommunityComponent />
       </main>
     </>

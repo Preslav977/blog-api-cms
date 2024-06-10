@@ -7,7 +7,7 @@ function LogInFormComponent() {
 
   const [password, setPassword] = useState("");
 
-  const [IsUserLoggedIn, setIsUserLoggedIn] = useOutletContext();
+  const [, , IsUserLoggedIn, setIsUserLoggedIn] = useOutletContext();
 
   const [error, setError] = useState(null);
 

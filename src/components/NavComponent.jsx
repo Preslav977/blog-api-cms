@@ -5,8 +5,6 @@ import { Link, useOutletContext } from "react-router-dom";
 function NavComponent() {
   const [posts, setPosts] = useOutletContext();
 
-  console.log(posts);
-
   const [IsUserLoggedIn, setIsUserLoggedIn] = useOutletContext();
 
   const [navComponentDropDown, setNavComponentDropDrop] = useState(false);

@@ -10,8 +10,6 @@ function CreatePostComponent() {
   const [, , , , , , createPost, setCreatePost] = useOutletContext();
   const [, , , , loggedInUser, setLoggedInUser] = useOutletContext();
 
-  console.log(loggedInUser);
-
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");
   const [body, setBody] = useState("");
@@ -47,15 +45,19 @@ function CreatePostComponent() {
 
     const postCategory = FormDataObject.get("category");
 
+    console.log(postCategory);
+
     const postTags = FormDataObject.get("tags");
 
     const postImage_Link = FormDataObject.get("image_link");
+
+    console.log(postImage_Link);
 
     const postImage_Owner = FormDataObject.get("image_owner");
 
     const postImage_Source = FormDataObject.get("image_source");
 
-    const postPrivacy = FormDataObject.get("privacy");
+    // const postPrivacy = FormDataObject.get("privacy");
 
     const createPostObject = {
       ...createPost,
@@ -75,7 +77,6 @@ function CreatePostComponent() {
     try {
       const response = await fetch("http://localhost:3000/posts", {
         method: "POST",
-        mode: "cors",
         headers: {
           Authorization: localStorage.getItem("token"),
           "Content-Type": "application/json",
@@ -99,6 +100,8 @@ function CreatePostComponent() {
       }
 
       const result = await response.json();
+
+      console.log(result);
 
       postId = result._id;
 
@@ -129,30 +132,15 @@ function CreatePostComponent() {
     }
   }
 
-  async function createPostCategory(e) {
-    e.preventDefault();
+  async function togglePostPrivacy(e) {
+    const obj = {
+      ...createPost,
+      privacy: e.target.checked,
+    };
 
-    try {
-      const response = await fetch(
-        `http://localhost:3000/posts/${id}/category`,
-        {
-          method: "POST",
-          headers: {
-            Authorization: localStorage.getItem("token"),
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            id: postId,
-            category: getPostCategory,
-          }),
-        },
-      );
+    console.log(obj);
 
-      const result = await response.json();
-      console.log(result);
-    } catch (err) {
-      console.log(err);
-    }
+    setCreatePost(obj);
   }
 
   return (
@@ -223,12 +211,7 @@ function CreatePostComponent() {
               </div>
               <div className={styles.formWrapper}>
                 <label htmlFor="image_link">Display Image:</label>
-                <input
-                  type="text"
-                  name="image_link"
-                  value={image_link}
-                  onChange={(e) => setImage_Link(e.target.value)}
-                />
+                <input type="text" name="image_link" />
               </div>
               <div className={styles.formWrapper}>
                 <label htmlFor="image_owner">Display Image Owner:</label>
@@ -250,11 +233,16 @@ function CreatePostComponent() {
               </div>
               <div className={styles.formWrapperCheckbox}>
                 <label htmlFor="privacy">Privacy</label>
-                <input type="checkbox" name="privacy" id="" />
+                <input
+                  type="checkbox"
+                  name="privacy"
+                  id=""
+                  checked={createPost.privacy}
+                  onChange={togglePostPrivacy}
+                />
               </div>
               <button type="submit">Submit Post</button>
             </form>
-            <form onSubmit={createPostCategory}></form>
           </div>
           {/* <div className={styles.testing}></div> */}
         </div>

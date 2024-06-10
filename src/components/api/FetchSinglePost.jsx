@@ -7,7 +7,7 @@ import NavComponent from "../NavComponent";
 import { format } from "date-fns";
 
 function FetchSinglePost() {
-  const [post, setPost] = useState();
+  const [post, setPost] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
   const [IsUserLogged, setIsUserLogged] = useOutletContext();
@@ -29,7 +29,7 @@ function FetchSinglePost() {
       .then((response) => setPost(response))
       .catch((error) => setError(error))
       .finally(() => setLoading(false));
-  }, [id]);
+  }, [id, setPost]);
 
   if (loading) return <p data-testid="loading">Loading....</p>;
   if (error) return <p>A network error was encountered</p>;

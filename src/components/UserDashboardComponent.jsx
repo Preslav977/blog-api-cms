@@ -2,15 +2,21 @@ import { useOutletContext } from "react-router-dom";
 import styles from "./UserDashboardComponent.module.css";
 import NavComponent from "./NavComponent";
 import { useState, useEffect } from "react";
+import FlexedPostComponent from "./FlexedPostComponent";
+import { useParams } from "react-router-dom";
 
 function UserDashboardComponent() {
-  const [IsUserLoggedIn, setIsUserLoggedIn] = useOutletContext();
+  const [posts, setPosts] = useOutletContext();
+
+  const [, , IsUserLoggedIn, setIsUserLoggedIn] = useOutletContext();
 
   const [error, setError] = useState(null);
 
   const [loading, setLoading] = useState(true);
 
-  const [loggedInUser, setLoggedInUser] = useOutletContext();
+  const [, , , , loggedInUser, setLoggedInUser] = useOutletContext();
+
+  const { id } = useParams();
 
   useEffect(() => {
     fetch("http://localhost:3000/user", {
@@ -29,6 +35,100 @@ function UserDashboardComponent() {
       .catch((error) => setError(error))
       .finally(() => setLoading(false));
   }, [setLoggedInUser]);
+
+  async function removePost(post) {
+    setPosts(posts.filter((obj) => obj._id !== post._id));
+
+    try {
+      const response = await fetch(`http://localhost:3000/posts/${id}`, {
+        method: "DELETE",
+        headers: {
+          Authorization: localStorage.getItem("token"),
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ id: post._id }),
+      });
+      const result = await response.json();
+
+      console.log(result);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  async function publishPost(post) {
+    setPosts(
+      posts.map((obj) => {
+        if (obj._id === post._id) {
+          console.log(obj._id);
+          console.log(post._id);
+          return { ...obj, privacy: (obj.privacy = true) };
+        } else {
+          return obj;
+        }
+      }),
+    );
+
+    try {
+      const response = await fetch(`http://localhost:3000/post/${id}`, {
+        method: "PUT",
+        headers: {
+          Authorization: localStorage.getItem("token"),
+          "Content-Type": "application/json",
+        },
+
+        body: JSON.stringify({
+          privacy: post.privacy,
+          id: post._id,
+        }),
+      });
+
+      const result = await response.json();
+
+      console.log(result);
+
+      console.log(post.privacy);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  async function unPublishPost(post) {
+    setPosts(
+      posts.map((obj) => {
+        if (obj._id === post._id) {
+          console.log(obj._id);
+          console.log(post._id);
+          return { ...obj, privacy: (obj.privacy = false) };
+        } else {
+          return obj;
+        }
+      }),
+    );
+
+    try {
+      const response = await fetch(`http://localhost:3000/post/${id}`, {
+        method: "PUT",
+        headers: {
+          Authorization: localStorage.getItem("token"),
+          "Content-Type": "application/json",
+        },
+
+        body: JSON.stringify({
+          privacy: post.privacy,
+          id: post._id,
+        }),
+      });
+
+      const result = await response.json();
+
+      console.log(result);
+
+      console.log(post.privacy);
+    } catch (err) {
+      console.log(err);
+    }
+  }
 
   if (IsUserLoggedIn) {
     return (
@@ -94,6 +194,39 @@ function UserDashboardComponent() {
               </div>
             </div>
             <hr />
+            <div className={styles.authorPostsContainer}>
+              <h3>Manage your posts</h3>
+              <section>
+                {posts.map((post) => (
+                  <section key={post._id}>
+                    <FlexedPostComponent
+                      key={post._id}
+                      postImgPathId={`/home/posts/${post._id}`}
+                      postImgSrc={post.image_link}
+                      postCategoryPathId={`/home/posts/category/${post.category[0]._id}`}
+                      postCategory={post.category[0].category}
+                      postTitlePathId={`/home/posts/${post._id}`}
+                      postTitle={post.title}
+                      postBodyPathId={`/home/posts/${post._id}`}
+                      postBody={post.body}
+                    />
+                    {post.author._id === loggedInUser._id ? (
+                      <div>
+                        <button onClick={() => removePost(post)}>Delete</button>
+                        <button onClick={() => publishPost(post)}>
+                          Publish
+                        </button>
+                        <button onClick={() => unPublishPost(post)}>
+                          Unpublished
+                        </button>
+                      </div>
+                    ) : (
+                      ""
+                    )}
+                  </section>
+                ))}
+              </section>
+            </div>
           </div>
         </div>
       </>

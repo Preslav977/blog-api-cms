@@ -10,20 +10,18 @@ function App() {
 
   const [loggedInUser, setLoggedInUser] = React.useState([]);
 
-  const [createPost, setCreatePost] = React.useState([
-    {
-      title: "",
-      author: "",
-      body: "",
-      category: [],
-      tags: "",
-      image_link: "",
-      image_owner: "",
-      image_source: "",
-      privacy: false,
-      comments: [],
-    },
-  ]);
+  const [createPost, setCreatePost] = React.useState({
+    title: "",
+    author: "",
+    body: "",
+    category: [],
+    tags: "",
+    image_link: "",
+    image_owner: "",
+    image_source: "",
+    privacy: false,
+    comments: [],
+  });
 
   return (
     <>
