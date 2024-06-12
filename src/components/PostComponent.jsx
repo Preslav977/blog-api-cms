@@ -1,6 +1,7 @@
 import styles from "./PostComponent.module.css";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import DOMPurify from "dompurify";
 
 function PostComponent({
   postImgPathId,
@@ -12,6 +13,8 @@ function PostComponent({
   postBodyPathId,
   postBody,
 }) {
+  const sanitizedHTMLContent = DOMPurify.sanitize(postBody);
+
   return (
     <>
       <article className={styles.mainPagePostArticleContainer}>
@@ -35,9 +38,11 @@ function PostComponent({
         <div className={styles.mainPagePostBody}>
           <Link to={postBodyPathId}>
             <h2 data-testid="postTitle">{postTitle}</h2>
-            <p data-testid="postBody" className="postDescription">
-              {postBody}
-            </p>
+            <div
+              dangerouslySetInnerHTML={{ __html: sanitizedHTMLContent }}
+              data-testid="postBody"
+              className="postDescription"
+            ></div>
           </Link>
         </div>
       </article>

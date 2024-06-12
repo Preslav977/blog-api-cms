@@ -47,6 +47,7 @@
 
 .articleDetailedDescriptionContainer {
   line-height: var(--article-detailed-description-line-height);
+  text-align: center;
 }
 
 .articleDetailedTagsContainer p {
@@ -125,4 +126,8 @@
 .articleCommentLikeSvg {
   height: var(--article-like-svg-height);
   width: var(--article-like-svg-width);
+}
+
+img.articleImage {
+  width: 100%;
 }

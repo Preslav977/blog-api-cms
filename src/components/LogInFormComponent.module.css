@@ -38,8 +38,8 @@ a.logInFormLink {
 }
 
 .formContentWrapper > input {
-  width: 100%;
-  padding: 0.5em;
+  width: var(--grid-image-width);
+  padding: var(--input-padding);
 }
 
 .error {

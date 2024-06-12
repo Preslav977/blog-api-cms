@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import styles from "./CreatePostComponent.module.css";
 import NavComponent from "./NavComponent";
 import { useOutletContext } from "react-router-dom";
+import { Editor } from "@tinymce/tinymce-react";
 
 function CreatePostComponent() {
   const { id } = useParams();
@@ -25,14 +26,11 @@ function CreatePostComponent() {
     "customs",
   );
 
-  const [tags, setTags] = useState("");
   const [image_link, setImage_Link] = useState("");
   const [image_owner, setImage_Owner] = useState("");
   const [image_source, setImage_Source] = useState("");
 
-  let postId = "";
-
-  let getPostCategory = "";
+  const [postId, setPostId] = useState("");
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -60,8 +58,6 @@ function CreatePostComponent() {
     } else {
       postPrivacy = false;
     }
-
-    console.log(postPrivacy);
 
     const createPostObject = {
       ...createPost,
@@ -94,43 +90,17 @@ function CreatePostComponent() {
           image_link: postImage_Link,
           image_owner: postImage_Owner,
           image_source: postImage_Source,
-          // privacy: false,
           privacy: postPrivacy,
         }),
       });
-
-      if (response.status !== 200) {
-        throw new Error(response.status);
-      }
 
       const result = await response.json();
 
       console.log(result);
 
-      postId = result._id;
+      setPostId(result._id);
 
-      getPostCategory = postCategory;
-
-      try {
-        const response = await fetch(
-          `http://localhost:3000/posts/${id}/category`,
-          {
-            method: "POST",
-            headers: {
-              Authorization: localStorage.getItem("token"),
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              id: postId,
-              category: getPostCategory,
-            }),
-          },
-        );
-        const result = await response.json();
-        console.log(result);
-      } catch (err) {
-        console.log(err);
-      }
+      console.log(postId);
     } catch (err) {
       console.log(err);
     }
@@ -142,9 +112,29 @@ function CreatePostComponent() {
       privacy: e.target.checked,
     };
 
-    console.log(obj);
-
     setCreatePost(obj);
+  }
+
+  async function createPostCategory(e) {
+    e.preventDefault();
+
+    try {
+      const response = await fetch(`http://localhost:3000/${id}/category`, {
+        method: "POST",
+        headers: {
+          Authorization: localStorage.getItem("token"),
+          "Content-Type": "application/json",
+        },
+      });
+
+      const result = await response.json();
+
+      console.log(createPost);
+
+      console.log(result);
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   return (
@@ -177,12 +167,26 @@ function CreatePostComponent() {
               </div>
               <div className={styles.formWrapper}>
                 <label htmlFor="body">Body</label>
-                <textarea
-                  name="body"
-                  id=""
-                  value={body}
-                  onChange={(e) => setBody(e.target.value)}
-                ></textarea>
+                <Editor
+                  apiKey="c6fjep42m9iubxcb2use57a5q6cerr9fqhik1zpcyiil5z32"
+                  textareaName="body"
+                  init={{
+                    plugins:
+                      "anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage advtemplate ai mentions tinycomments tableofcontents footnotes mergetags autocorrect typography inlinecss markdown",
+                    toolbar:
+                      "undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat",
+                    tinycomments_mode: "embedded",
+                    tinycomments_author: "Author name",
+                    mergetags_list: [
+                      { value: "First.Name", title: "First Name" },
+                      { value: "Email", title: "Email" },
+                    ],
+                    ai_request: (request, respondWith) =>
+                      respondWith.string(() =>
+                        Promise.reject("See docs to implement AI Assistant"),
+                      ),
+                  }}
+                />
               </div>
               <div className={styles.formWrapper}>
                 <label htmlFor="category">Category</label>
@@ -206,16 +210,16 @@ function CreatePostComponent() {
               </div>
               <div className={styles.formWrapper}>
                 <label htmlFor="tags">Tags</label>
-                <input
-                  type="text"
-                  name="tags"
-                  value={tags}
-                  onChange={(e) => setTags(e.target.value)}
-                />
+                <input type="text" name="tags" />
               </div>
               <div className={styles.formWrapper}>
                 <label htmlFor="image_link">Display Image:</label>
-                <input type="text" name="image_link" />
+                <input
+                  type="text"
+                  name="image_link"
+                  value={image_link}
+                  onChange={(e) => setImage_Link(e.target.value)}
+                />
               </div>
               <div className={styles.formWrapper}>
                 <label htmlFor="image_owner">Display Image Owner:</label>
@@ -248,7 +252,6 @@ function CreatePostComponent() {
               <button type="submit">Submit Post</button>
             </form>
           </div>
-          {/* <div className={styles.testing}></div> */}
         </div>
       </section>
     </>

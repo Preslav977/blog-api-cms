@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import styles from "./FetchSinglePost.module.css";
 import { Link, useOutletContext } from "react-router-dom";
 import NavComponent from "../NavComponent";
+import DOMPurify from "dompurify";
 
 import { format } from "date-fns";
 
@@ -10,13 +11,17 @@ function FetchSinglePost() {
   const [post, setPost] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [IsUserLogged, setIsUserLogged] = useOutletContext();
+  const [, , IsUserLogged, setIsUserLogged] = useOutletContext();
 
-  const [loggedInUser, setLoggedInUser] = useOutletContext();
+  const [, , , , loggedInUser, setLoggedInUser] = useOutletContext();
 
   const formRef = useRef();
 
   const { id } = useParams();
+
+  const sanitizedHTMLContent = DOMPurify.sanitize(post.body);
+
+  console.log(sanitizedHTMLContent);
 
   useEffect(() => {
     fetch(`http://localhost:3000/posts/${id}`, { mode: "cors" })
@@ -127,7 +132,11 @@ function FetchSinglePost() {
           <p>Photo by {post.image_owner}</p>
         </div>
         <div className={styles.articleDetailedDescriptionContainer}>
-          <p data-testid="postBody">{post.body}</p>
+          {/* <p data-testid="postBody">{sanitizedHTMLContent}</p> */}
+          <div
+            data-testid="postBody"
+            dangerouslySetInnerHTML={{ __html: sanitizedHTMLContent }}
+          ></div>
         </div>
         <div className={styles.articleDetailedTagsContainer}>
           <h3>Tags</h3>

@@ -1,11 +1,12 @@
 import styles from "./NavComponent.module.css";
 import { useState } from "react";
 import { Link, useOutletContext } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function NavComponent() {
   const [posts, setPosts] = useOutletContext();
 
-  const [IsUserLoggedIn, setIsUserLoggedIn] = useOutletContext();
+  const [, , IsUserLoggedIn, setIsUserLoggedIn] = useOutletContext();
 
   const [navComponentDropDown, setNavComponentDropDrop] = useState(false);
 
@@ -17,6 +18,14 @@ function NavComponent() {
 
   function toggleLoggedUserDropDrown() {
     setLoggedInUserDropDown((loggedInUserDropDown) => !loggedInUserDropDown);
+  }
+
+  const navigate = useNavigate();
+
+  function logoutUser() {
+    navigate("/");
+
+    localStorage.clear();
   }
 
   if (!navComponentDropDown) {
@@ -65,7 +74,9 @@ function NavComponent() {
                       <Link to="/home/account">Account</Link>
                     </li>
                     <li>
-                      <Link to="/home/logout">Logout</Link>
+                      <Link onClick={logoutUser} to="#">
+                        Logout
+                      </Link>
                     </li>
                   </div>
                 )}
@@ -125,7 +136,9 @@ function NavComponent() {
                       <Link to="/home/account">Account</Link>
                     </li>
                     <li>
-                      <Link to="/home/logout">Logout</Link>
+                      <Link onClick={logoutUser} to="#">
+                        Logout
+                      </Link>
                     </li>
                   </div>
                 )}

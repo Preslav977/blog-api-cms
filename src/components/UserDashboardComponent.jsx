@@ -18,6 +18,8 @@ function UserDashboardComponent() {
 
   const { id } = useParams();
 
+  console.log(loggedInUser);
+
   useEffect(() => {
     fetch("http://localhost:3000/user", {
       headers: {
@@ -29,6 +31,7 @@ function UserDashboardComponent() {
         if (response.status >= 400) {
           throw new Error("Server Error");
         }
+
         return response.json();
       })
       .then((response) => setLoggedInUser(response))
@@ -123,8 +126,6 @@ function UserDashboardComponent() {
       const result = await response.json();
 
       console.log(result);
-
-      console.log(post.privacy);
     } catch (err) {
       console.log(err);
     }
@@ -195,8 +196,10 @@ function UserDashboardComponent() {
             </div>
             <hr />
             <div className={styles.authorPostsContainer}>
-              <h3>Manage your posts</h3>
-              <section>
+              <h3 className={styles.userDashboardPostHeader}>
+                Manage your posts
+              </h3>
+              <div>
                 {posts.map((post) => (
                   <section key={post._id}>
                     <FlexedPostComponent
@@ -211,12 +214,23 @@ function UserDashboardComponent() {
                       postBody={post.body}
                     />
                     {post.author._id === loggedInUser._id ? (
-                      <div>
-                        <button onClick={() => removePost(post)}>Delete</button>
-                        <button onClick={() => publishPost(post)}>
+                      <div className={styles.managePostButtons}>
+                        <button
+                          className={styles.managePostButton}
+                          onClick={() => removePost(post)}
+                        >
+                          Delete
+                        </button>
+                        <button
+                          className={styles.managePostButton}
+                          onClick={() => publishPost(post)}
+                        >
                           Publish
                         </button>
-                        <button onClick={() => unPublishPost(post)}>
+                        <button
+                          className={styles.managePostButton}
+                          onClick={() => unPublishPost(post)}
+                        >
                           Unpublished
                         </button>
                       </div>
@@ -225,7 +239,7 @@ function UserDashboardComponent() {
                     )}
                   </section>
                 ))}
-              </section>
+              </div>
             </div>
           </div>
         </div>

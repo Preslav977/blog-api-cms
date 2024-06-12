@@ -20,7 +20,7 @@
 
 .featuredTags > a {
   outline: var(--article-category-outline);
-  padding: var(--image-owner-padding);
+  padding: var(--featured-tags-link-padding);
   box-shadow: var(--article-category-box-shadow);
   text-transform: var(--article-category-text-transform);
   background-color: var(--article-category-background-color);

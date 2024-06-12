@@ -25,20 +25,21 @@ function LogInFormComponent() {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:3000/user/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
+      const response = await fetch(
+        "http://localhost:3000/user/login_verified",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email,
+            password,
+          }),
         },
-        body: JSON.stringify({
-          email,
-          password,
-        }),
-      });
+      );
 
       const result = await response.json();
-
-      console.log(result);
 
       if (result.message === "Unauthorized") {
         setError(result.message);

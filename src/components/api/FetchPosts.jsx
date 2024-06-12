@@ -7,6 +7,7 @@ import FlexedPostComponent from "../FlexedPostComponent";
 import FeaturedTagsComponent from "../FeaturedTagsComponent";
 import CommunityComponent from "../CommunityComponent";
 import NavComponent from "../NavComponent";
+import DOMPurify from "dompurify";
 
 function FetchPosts() {
   const [posts, setPosts] = useOutletContext();

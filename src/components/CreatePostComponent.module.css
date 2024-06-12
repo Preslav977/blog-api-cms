@@ -1,6 +1,6 @@
 .creatingPostContainer {
   max-width: var(--max-width-content);
-  margin: 0 auto;
+  margin: var(--margin-default);
   padding: 0px 1rem 0px 1rem;
 }
 
@@ -8,25 +8,26 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  text-align: center;
 }
 
 .createPostFormLivePreviewContainer {
   display: flex;
-  max-width: 1200px;
+  max-width: var(--max-width-page);
 }
 
 .formContainer {
-  max-width: 600px;
-  /* margin: 0 auto; */
-  width: 100%;
-  margin-top: 2em;
+  max-width: var(--form-container-create-post-width);
+  margin: 0 auto;
+  width: var(--submit-comment-textarea-width);
+  margin-top: var(--article-category-margin-top);
 }
 
 .createPostForm {
   display: flex;
   flex-direction: column;
-  margin-right: 1em;
-  gap: 1.5em;
+  margin-right: var(--form-container-create-post-margin-right);
+  gap: var(--flex-gap);
 }
 
 .formWrapper {
@@ -36,22 +37,22 @@
 
 .formWrapperCheckbox {
   display: flex;
-  gap: 0.5em;
+  gap: var(--greeting-user-gap);
 }
 
 input,
 button,
 select {
-  padding: 0.5em;
+  padding: var(--input-padding);
 }
 
 textarea {
-  min-height: 50px;
-  max-height: 400px;
+  min-height: var(--submit-comment-min-height);
+  max-height: var(--submit-comment-max-height);
   resize: vertical;
 }
 
-.testing {
-  margin: 0 auto;
-  margin-top: 2em;
+.livePreviewContainer {
+  margin: var(--margin-default);
+  margin-top: var(--article-category-margin-top);
 }
