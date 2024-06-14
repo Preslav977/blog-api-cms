@@ -21,7 +21,7 @@ function UserDashboardComponent() {
   const { id } = useParams();
 
   useEffect(() => {
-    fetch("http://localhost:3000/user", {
+    fetch("https://blog-api-backend-production-5dc1.up.railway.app/user", {
       headers: {
         Authorization: localStorage.getItem("token"),
       },
@@ -43,14 +43,17 @@ function UserDashboardComponent() {
     setPosts(posts.filter((obj) => obj._id !== post._id));
 
     try {
-      const response = await fetch(`http://localhost:3000/posts/${id}`, {
-        method: "DELETE",
-        headers: {
-          Authorization: localStorage.getItem("token"),
-          "Content-Type": "application/json",
+      const response = await fetch(
+        `https://blog-api-backend-production-5dc1.up.railway.app/posts/${id}`,
+        {
+          method: "DELETE",
+          headers: {
+            Authorization: localStorage.getItem("token"),
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ id: post._id }),
         },
-        body: JSON.stringify({ id: post._id }),
-      });
+      );
       const result = await response.json();
 
       console.log(result);
@@ -71,18 +74,21 @@ function UserDashboardComponent() {
     );
 
     try {
-      const response = await fetch(`http://localhost:3000/post/${id}`, {
-        method: "PUT",
-        headers: {
-          Authorization: localStorage.getItem("token"),
-          "Content-Type": "application/json",
-        },
+      const response = await fetch(
+        `https://blog-api-backend-production-5dc1.up.railway.app/posts/${id}`,
+        {
+          method: "PUT",
+          headers: {
+            Authorization: localStorage.getItem("token"),
+            "Content-Type": "application/json",
+          },
 
-        body: JSON.stringify({
-          privacy: post.privacy,
-          id: post._id,
-        }),
-      });
+          body: JSON.stringify({
+            privacy: post.privacy,
+            id: post._id,
+          }),
+        },
+      );
 
       const result = await response.json();
 
@@ -104,18 +110,21 @@ function UserDashboardComponent() {
     );
 
     try {
-      const response = await fetch(`http://localhost:3000/post/${id}`, {
-        method: "PUT",
-        headers: {
-          Authorization: localStorage.getItem("token"),
-          "Content-Type": "application/json",
-        },
+      const response = await fetch(
+        `https://blog-api-backend-production-5dc1.up.railway.app/posts/${id}`,
+        {
+          method: "PUT",
+          headers: {
+            Authorization: localStorage.getItem("token"),
+            "Content-Type": "application/json",
+          },
 
-        body: JSON.stringify({
-          privacy: post.privacy,
-          id: post._id,
-        }),
-      });
+          body: JSON.stringify({
+            privacy: post.privacy,
+            id: post._id,
+          }),
+        },
+      );
 
       const result = await response.json();
 

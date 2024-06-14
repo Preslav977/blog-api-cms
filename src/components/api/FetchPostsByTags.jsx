@@ -12,7 +12,10 @@ function FetchPostsByTags() {
   const { name } = useParams();
 
   useEffect(() => {
-    fetch(`http://localhost:3000/posts/tag/${name}`, { mode: "cors" })
+    fetch(
+      `https://blog-api-backend-production-5dc1.up.railway.app/posts/tag/${name}`,
+      { mode: "cors" },
+    )
       .then((response) => {
         if (response.status >= 400) {
           throw new Error("Server Error");

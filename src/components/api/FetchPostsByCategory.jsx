@@ -12,7 +12,10 @@ function FetchPostsByCategory() {
   const { id } = useParams();
 
   useEffect(() => {
-    fetch(`http://localhost:3000/posts/category/${id}`, { mode: "cors" })
+    fetch(
+      `https://blog-api-backend-production-5dc1.up.railway.app/posts/category/${id}`,
+      { mode: "cors" },
+    )
       .then((response) => {
         if (response.status >= 400) {
           throw new Error("Server Error");

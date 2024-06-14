@@ -75,24 +75,27 @@ function CreatePostComponent() {
     setCreatePost(createPostObject);
 
     try {
-      const response = await fetch("http://localhost:3000/posts", {
-        method: "POST",
-        headers: {
-          Authorization: localStorage.getItem("token"),
-          "Content-Type": "application/json",
+      const response = await fetch(
+        "https://blog-api-backend-production-5dc1.up.railway.app/posts/",
+        {
+          method: "POST",
+          headers: {
+            Authorization: localStorage.getItem("token"),
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            title: postTitle,
+            author: loggedUserInformation._id,
+            body: postBody,
+            category: postCategory,
+            tags: postTags,
+            image_link: postImage_Link,
+            image_owner: postImage_Owner,
+            image_source: postImage_Source,
+            privacy: postPrivacy,
+          }),
         },
-        body: JSON.stringify({
-          title: postTitle,
-          author: loggedUserInformation._id,
-          body: postBody,
-          category: postCategory,
-          tags: postTags,
-          image_link: postImage_Link,
-          image_owner: postImage_Owner,
-          image_source: postImage_Source,
-          privacy: postPrivacy,
-        }),
-      });
+      );
 
       const result = await response.json();
 
@@ -104,7 +107,7 @@ function CreatePostComponent() {
 
       try {
         const response = await fetch(
-          `http://localhost:3000/posts/${postId}/category`,
+          `https://blog-api-backend-production-5dc1.up.railway.app/posts/${postId}/category`,
           {
             method: "POST",
             headers: {

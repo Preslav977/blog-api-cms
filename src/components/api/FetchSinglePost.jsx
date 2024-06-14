@@ -24,7 +24,10 @@ function FetchSinglePost() {
   const sanitizedHTMLContent = DOMPurify.sanitize(post.body);
 
   useEffect(() => {
-    fetch(`http://localhost:3000/posts/${id}`, { mode: "cors" })
+    fetch(
+      `https://blog-api-backend-production-5dc1.up.railway.app/posts/${id}`,
+      { mode: "cors" },
+    )
       .then((response) => {
         if (response.status >= 400) {
           throw new Error("Server Error");
@@ -57,7 +60,7 @@ function FetchSinglePost() {
 
     try {
       const response = await fetch(
-        `http://localhost:3000/posts/${id}/comments`,
+        `https://blog-api-backend-production-5dc1.up.railway.app/posts/${id}/comments`,
         {
           method: "POST",
           headers: {
@@ -83,7 +86,7 @@ function FetchSinglePost() {
 
     try {
       const response = await fetch(
-        `http://localhost:3000/posts/${id}/comment`,
+        `https://blog-api-backend-production-5dc1.up.railway.app/posts/${id}/comment`,
         {
           method: "DELETE",
           headers: {

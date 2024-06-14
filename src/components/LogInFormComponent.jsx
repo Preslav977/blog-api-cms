@@ -28,7 +28,7 @@ function LogInFormComponent() {
 
     try {
       const response = await fetch(
-        "http://localhost:3000/user/login_verified",
+        "https://blog-api-backend-production-5dc1.up.railway.app/user/login_verified",
         {
           method: "POST",
           headers: {
@@ -54,12 +54,15 @@ function LogInFormComponent() {
 
         setCheckIfUserIsLoggedIn(true);
 
-        const responseFetchUser = await fetch("http://localhost:3000/user", {
-          mode: "cors",
-          headers: {
-            Authorization: localStorage.getItem("token"),
+        const responseFetchUser = await fetch(
+          "https://blog-api-backend-production-5dc1.up.railway.app/user",
+          {
+            mode: "cors",
+            headers: {
+              Authorization: localStorage.getItem("token"),
+            },
           },
-        });
+        );
 
         const loggedUserInformation = await responseFetchUser.json();
 
