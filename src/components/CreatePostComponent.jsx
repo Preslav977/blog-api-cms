@@ -1,18 +1,17 @@
-import { useState, useRef, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useState } from "react";
+import { useOutletContext } from "react-router-dom";
 import styles from "./CreatePostComponent.module.css";
 import NavComponent from "./NavComponent";
-import { useOutletContext } from "react-router-dom";
 import { Editor } from "@tinymce/tinymce-react";
 
 function CreatePostComponent() {
-  const { id } = useParams();
+  let postId = "";
+
+  let retrievePostCategory = "";
 
   const [, , , , , , createPost, setCreatePost] = useOutletContext();
   const [, , , , loggedUserInformation, setLoggedUserInformation] =
     useOutletContext();
-
-  console.log(loggedUserInformation);
 
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");
@@ -98,6 +97,38 @@ function CreatePostComponent() {
       const result = await response.json();
 
       console.log(result);
+
+      postId = result._id;
+
+      console.log(postId);
+
+      retrievePostCategory = postCategory;
+
+      console.log(retrievePostCategory);
+
+      try {
+        const response = await fetch(
+          `http://localhost:3000/posts/${postId}/category`,
+          {
+            method: "POST",
+            headers: {
+              Authorization: localStorage.getItem("token"),
+              "Content-Type": "application/json",
+            },
+
+            body: JSON.stringify({
+              id: postId,
+              category: retrievePostCategory,
+            }),
+          },
+        );
+
+        const result = await response.json();
+
+        console.log(result);
+      } catch (err) {
+        console.log(err);
+      }
     } catch (err) {
       console.log(err);
     }
@@ -110,28 +141,6 @@ function CreatePostComponent() {
     };
 
     setCreatePost(obj);
-  }
-
-  async function createPostCategory(e) {
-    e.preventDefault();
-
-    try {
-      const response = await fetch(`http://localhost:3000/${id}/category`, {
-        method: "POST",
-        headers: {
-          Authorization: localStorage.getItem("token"),
-          "Content-Type": "application/json",
-        },
-      });
-
-      const result = await response.json();
-
-      console.log(createPost);
-
-      console.log(result);
-    } catch (err) {
-      console.log(err);
-    }
   }
 
   return (
