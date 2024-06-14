@@ -12,7 +12,7 @@
   --article-category-width: 50%;
   --article-category-outline: 1.5px solid black;
   --article-category-padding: 0.3em 1em 0.3em 1em;
-  --article-category-box-shadow: -5px 5px 5px black;
+  --article-category-box-shadow: -5px 6px 5px rgb(0 0 0);
   --article-category-text-transform: uppercase;
   --article-category-background-color: white;
   --article-category-text-decoration: none;
@@ -59,13 +59,12 @@
   --image-owner-position: absolute;
   --image-owner-margin-top: 0.5em;
   --image-owner-margin-left: 0.5em;
-  --image-owner-padding: 0.2em 0.15em 0.2em 0.15em;
+  --image-owner-padding: 0.2em 0.3em 0.2em 0.3em;
   --grid-image-aspect-ratio: 11.5 / 9;
   --featured-tags-padding: 2em 2em;
   --featured-tags-background-color: #e6e6e6;
   --featured-tags-margin-bottom: 2em;
   --featured-tags-gap: 1.2em;
-  --featured-tags-link-padding: 0.5em 0.6em;
   --main-page-flexed-image-width: 370px;
   --main-page-flexed-gap: 0.6rem;
   --post-flexed-line-height: 1.3em;
@@ -78,7 +77,7 @@
   --footer-background-color: #090909;
   --footer-content-width: 50%;
   --footer-right-side-gap: 2rem;
-  --login-form-min-height: 80vh;
+  --login-form-min-height: 75vh;
   --login-form-margin-top: 2.5em;
   --login-form-width: 500px;
   --login-form-link-color: #9443e0;
@@ -130,8 +129,28 @@
   --user-dashboard-left-gap: 2em;
   --user-dashboard-left-margin-right: 7em;
   --user-label-line-height: 1.5;
-  --form-container-create-post-margin-right: 1em;
+  --community-section-header-font-size: 1.5rem;
+  --featured-tags-padding: 2em 2em;
+  --featured-tags-container-padding: 2.5em;
+  --featured-tags-container-font-size: 1.05rem;
+  --featured-tags-container-text-transform: uppercase;
+  --flexed-post-header-font-size: 1.3rem;
+  --footer-content-headers-font-size: 1.4rem;
   --form-container-create-post-width: 600px;
+  --navigation-links-and-post-headers-font-size: 1rem;
+  --navigation-links-and-post-headers-font-weight: 600;
+  --nav-content-and-navigation-links-border: 2px solid black;
+  --nav-content-and-navigation-links-margin-bottom: -2px;
+  --post-component-header-font-size: 1.2rem;
+  --user-information-header-margin-top: 1.5em;
+  --user-dashboard-post-header-margin-left: 1rem;
+  --manage-post-buttons-margin-left: 5em;
+  --user-link-font-size: 0.6rem;
+  --user-link-max-width: 100px;
+  --user-dashboard-left-content-margin-right: 4em;
+  --create-post-container-padding: 0px 1rem 0px 1rem;
+  --featured-tags-padding: 0.5em 0.6em;
+  --manage-post-button-margin-bottom: 0.5em;
 }
 
 *,
@@ -140,6 +159,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "Lora", Courier, monospace;
 }
 
 ul[role="list"],
@@ -170,12 +190,12 @@ a:hover {
 
 img,
 picture {
-  /* width: 100%; */
+  width: 100%;
 }
 
 .postCategory {
   outline: 1.5px solid black;
-  padding: 0.2em 0.15em 0.2em 0.15em;
+  padding: 0.2em 0.3em 0.2em 0.3em;
   position: absolute;
   box-shadow: -5px 5px 5px black;
   text-transform: capitalize;

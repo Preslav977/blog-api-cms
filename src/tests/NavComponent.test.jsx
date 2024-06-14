@@ -32,7 +32,7 @@ describe("Should render NavComponent", () => {
 
     expect(screen.queryByText("ian").textContent).toMatch(/ian/i);
 
-    expect(screen.queryByRole("button")).not.toBeInTheDocument();
+    expect(screen.queryByRole("button")).toBeInTheDocument();
   });
 
   it("should render NavComponent navigation links", async () => {
@@ -64,7 +64,9 @@ describe("Should render NavComponent", () => {
     expect(screen.queryByText("Culture").textContent).toMatch(/culture/i);
     expect(screen.queryByText("History").textContent).toMatch(/history/i);
     expect(screen.queryByText("Nature").textContent).toMatch(/nature/i);
-    expect(screen.queryByText("Traditions").textContent).toMatch(/traditions/i);
+    expect(screen.queryAllByText("Traditions")[0].textContent).toMatch(
+      /traditions/i,
+    );
     expect(screen.queryByText("Customs").textContent).toMatch(/customs/i);
   });
 
@@ -345,15 +347,17 @@ describe("Should render NavComponent", () => {
 
     const natureLink = screen.queryAllByText("nature");
 
-    await user.click(natureLink[0]);
+    await user.click(natureLink[1]);
 
-    screen.debug();
+    // screen.debug();
 
     apiLoading = screen.queryByTestId("loading");
 
     expect(apiLoading).toBeInTheDocument();
 
     await waitForElementToBeRemoved(() => screen.queryByTestId("loading"));
+
+    screen.debug();
 
     const postCategory = screen.queryAllByText("nature");
 

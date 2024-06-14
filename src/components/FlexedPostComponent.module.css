@@ -35,6 +35,10 @@
   width: var(--post-flexed-width);
 }
 
+.mainPagePostHeader {
+  font-size: var(--flexed-post-header-font-size);
+}
+
 @media screen and (max-width: 900px) {
   .mainPageFlexedPostImg {
     width: var(--grid-image-width);

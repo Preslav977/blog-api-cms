@@ -23,7 +23,7 @@
 }
 
 .userInformationHeader {
-  margin-top: 1.5em;
+  margin-top: var(--user-information-header-margin-top);
   margin-bottom: var(--form-content-margin-bottom);
 }
 
@@ -65,35 +65,50 @@
 }
 
 .userDashboardPostHeader {
-  margin-left: 1rem;
-  margin-bottom: 0.5rem;
+  margin-left: var(--user-dashboard-post-header-margin-left);
+  margin-bottom: var(--nav-post-image-margin-bottom);
 }
 
 .managePostButtons {
-  margin-left: 5em;
+  margin-left: var(--manage-post-buttons-margin-left);
 }
 
 .managePostButton + .managePostButton {
-  margin-left: 1em;
+  margin-left: var(--user-dashboard-post-header-margin-left);
 }
 
 @media screen and (max-width: 500px) {
   .userLink {
-    font-size: 0.6rem;
+    font-size: var(--user-link-font-size);
     display: block;
-    max-width: 100px;
+    max-width: var(--user-link-max-width);
     text-align: center;
   }
 
   .userDashboardLeftContent {
-    margin-right: 4em;
+    margin-right: var(--user-dashboard-left-content-margin-right);
   }
+}
+
+.managePostButtons {
+  margin-bottom: var(--manage-post-button-margin-bottom);
+  background-color: var(--article-category-background-color);
+}
+
+.managePostButton {
+  outline: var(--author-link-outline);
+}
+
+.managePostButton:hover {
+  background-color: var(--author-link-background-color);
+  color: var(--author-link-color);
+  cursor: pointer;
 }
 
 @media screen and (max-width: 900px) {
   .userDashboardPostHeader {
     text-align: center;
-    margin-bottom: 0.5em;
+    margin-bottom: var(--article-author-information-margin-bottom);
     margin-left: 0;
   }
 
@@ -109,6 +124,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 0.5em;
+    gap: var(--main-community-gap);
   }
 }

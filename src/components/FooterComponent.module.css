@@ -21,6 +21,16 @@
   gap: var(--footer-right-side-gap);
 }
 
+.footerContent h4,
+.footerContent h5 {
+  font-size: var(--footer-content-headers-font-size);
+}
+
+.footerColumnOne p,
+.footerColumnTwo p {
+  cursor: pointer;
+}
+
 @media screen and (max-width: 700px) {
   .footerContainer {
     display: flex;

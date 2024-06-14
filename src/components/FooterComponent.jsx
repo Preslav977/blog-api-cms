@@ -15,14 +15,14 @@ function FooterComponent() {
         <div className={styles.footerRightSide}>
           <div className={styles.footerColumnOne}>
             <h4>About Bulgarian</h4>
-            <h5>About Us</h5>
-            <h5>Our Vision</h5>
+            <p>About Us</p>
+            <p>Our Vision</p>
           </div>
           <div className={styles.footerColumnTwo}>
             <h4>Contact Us</h4>
-            <h5>Advertise</h5>
-            <h5>Editors Column</h5>
-            <h5>Email</h5>
+            <p>Advertise</p>
+            <p>Editors Column</p>
+            <p>Email</p>
           </div>
         </div>
       </div>

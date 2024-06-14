@@ -37,7 +37,9 @@ function PostComponent({
         </div>
         <div className={styles.mainPagePostBody}>
           <Link to={postBodyPathId}>
-            <h2 data-testid="postTitle">{postTitle}</h2>
+            <h2 className={styles.mainPagePostHeader} data-testid="postTitle">
+              {postTitle}
+            </h2>
             <div
               dangerouslySetInnerHTML={{ __html: sanitizedHTMLContent }}
               data-testid="postBody"

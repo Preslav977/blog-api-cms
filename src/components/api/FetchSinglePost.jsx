@@ -21,8 +21,6 @@ function FetchSinglePost() {
 
   const sanitizedHTMLContent = DOMPurify.sanitize(post.body);
 
-  console.log(sanitizedHTMLContent);
-
   useEffect(() => {
     fetch(`http://localhost:3000/posts/${id}`, { mode: "cors" })
       .then((response) => {
@@ -68,8 +66,6 @@ function FetchSinglePost() {
         },
       );
       const result = await response.json();
-
-      console.log(result);
     } catch (err) {
       console.log(err);
     }
@@ -96,8 +92,6 @@ function FetchSinglePost() {
         },
       );
       const result = await response.json();
-
-      console.log(result);
     } catch (err) {
       console.log(err);
     }
@@ -132,7 +126,6 @@ function FetchSinglePost() {
           <p>Photo by {post.image_owner}</p>
         </div>
         <div className={styles.articleDetailedDescriptionContainer}>
-          {/* <p data-testid="postBody">{sanitizedHTMLContent}</p> */}
           <div
             data-testid="postBody"
             dangerouslySetInnerHTML={{ __html: sanitizedHTMLContent }}
@@ -169,7 +162,7 @@ function FetchSinglePost() {
                   <textarea
                     className={styles.submitCommentTextArea}
                     name="content"
-                    id=""
+                    id="content"
                     placeholder="Enter you comment here"
                     required
                   ></textarea>
@@ -209,7 +202,7 @@ function FetchSinglePost() {
                   )} */}
                     {/* <p className={styles.articleLike}>{postComments.like}</p> */}
                     {loggedInUser._id === postComments.user._id ? (
-                      <>
+                      <div className={styles.deleteCommentContainer}>
                         <img
                           onClick={() => {
                             (e) => e.preventDefault();
@@ -220,7 +213,23 @@ function FetchSinglePost() {
                           alt=""
                         />
                         <p>Delete</p>
-                      </>
+                      </div>
+                    ) : (
+                      ""
+                    )}
+                    {loggedInUser.admin ? (
+                      <div className={styles.deleteCommentContainer}>
+                        <img
+                          onClick={() => {
+                            (e) => e.preventDefault();
+                            removeComment(postComments);
+                          }}
+                          className={styles.articleCommentLikeSvg}
+                          src="/trashcan.svg"
+                          alt=""
+                        />
+                        <p>Delete</p>
+                      </div>
                     ) : (
                       ""
                     )}

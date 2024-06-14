@@ -271,13 +271,13 @@ describe("should render FlexedComponent posts by category", () => {
 
     const postImg = screen.getByTestId("postImg");
 
-    const postCategory = screen.queryByText("customs");
+    const postCategory = screen.queryAllByText("customs");
 
     const postTitle = screen.queryByText("Traditional Customs of Bulgaria");
 
     const postBody = screen.getByTestId("postBody");
 
-    expect(postCategory.textContent).toEqual("customs");
+    expect(postCategory[0].textContent).toEqual("customs");
 
     expect(postTitle.textContent).toEqual("Traditional Customs of Bulgaria");
 

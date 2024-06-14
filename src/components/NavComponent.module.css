@@ -131,6 +131,25 @@
   margin-left: var(--nav-post-description-margin-left);
 }
 
+.navContent > li,
+.navigationLinks,
+.loggedInUserSvg {
+  cursor: pointer;
+}
+
+.navContent > li:hover,
+.navigationLinks h2:hover,
+.navigationLinks a:hover {
+  border-bottom: var(--nav-content-and-navigation-links-border);
+  margin-bottom: var(--nav-content-and-navigation-links-margin-bottom);
+}
+
+.navigationLinks h2,
+.navComponentPostHeaders {
+  font-size: var(--navigation-links-and-post-headers-font-size);
+  font-weight: var(--navigation-links-and-post-headers-font-weight);
+}
+
 @media screen and (max-width: 900px) {
   .navPostArticles {
     display: flex;

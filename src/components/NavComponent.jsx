@@ -49,7 +49,7 @@ function NavComponent() {
           </Link>
           <div className={styles.navRightSideContent}>
             {!IsUserLoggedIn ? (
-              <Link to={"/account/login"}>
+              <Link to={"/"}>
                 <button className={styles.loginButton}>Log in</button>
               </Link>
             ) : (
@@ -112,7 +112,7 @@ function NavComponent() {
           </Link>
           <div className={styles.navRightSideContent}>
             {!IsUserLoggedIn ? (
-              <Link to={"/account/login"}>
+              <Link to={"/"}>
                 <button className={styles.loginButton}>Log in</button>
               </Link>
             ) : (
@@ -223,7 +223,9 @@ function NavComponent() {
                           {post.category[0].category}
                         </Link>
                         <Link to={`/home/posts/${post._id}`}>
-                          <h2>{post.title}</h2>
+                          <h2 className={styles.navComponentPostHeaders}>
+                            {post.title}
+                          </h2>
                         </Link>
                       </div>
                     </div>

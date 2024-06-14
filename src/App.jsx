@@ -6,9 +6,10 @@ import FooterComponent from "./components/FooterComponent";
 function App() {
   const [posts, setPosts] = React.useState([]);
 
-  const [IsUserLoggedIn, setIsUserLoggedIn] = React.useState(false);
+  const [checkIfUserIsLoggedIn, setCheckIfUserIsLoggedIn] =
+    React.useState(false);
 
-  const [loggedInUser, setLoggedInUser] = React.useState([]);
+  const [loggedUserInformation, setLoggedUserInformation] = React.useState({});
 
   const [createPost, setCreatePost] = React.useState({
     title: "",
@@ -29,10 +30,10 @@ function App() {
         context={[
           posts,
           setPosts,
-          IsUserLoggedIn,
-          setIsUserLoggedIn,
-          loggedInUser,
-          setLoggedInUser,
+          checkIfUserIsLoggedIn,
+          setCheckIfUserIsLoggedIn,
+          loggedUserInformation,
+          setLoggedUserInformation,
           createPost,
           setCreatePost,
         ]}

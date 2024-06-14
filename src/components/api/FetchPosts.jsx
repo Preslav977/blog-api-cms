@@ -7,7 +7,6 @@ import FlexedPostComponent from "../FlexedPostComponent";
 import FeaturedTagsComponent from "../FeaturedTagsComponent";
 import CommunityComponent from "../CommunityComponent";
 import NavComponent from "../NavComponent";
-import DOMPurify from "dompurify";
 
 function FetchPosts() {
   const [posts, setPosts] = useOutletContext();
@@ -34,7 +33,7 @@ function FetchPosts() {
     <>
       <NavComponent />
       <main className={styles.mainContent}>
-        <div className={styles.postContainerGrid}>
+        <section className={styles.postContainerGrid}>
           {posts.slice(0, 5).map((post) => (
             <PostComponent
               key={post._id}
@@ -47,7 +46,7 @@ function FetchPosts() {
               postBody={post.body}
             />
           ))}
-        </div>
+        </section>
         <hr />
         <AuthorComponent />
         <hr />
@@ -82,7 +81,7 @@ function FetchPosts() {
             />
           ))}
         </section>
-        <section>
+        <article>
           {posts.slice(10, 15).map((post) => (
             <section key={post._id}>
               {!post.privacy ? (
@@ -102,7 +101,7 @@ function FetchPosts() {
               )}
             </section>
           ))}
-        </section>
+        </article>
         <CommunityComponent />
       </main>
     </>

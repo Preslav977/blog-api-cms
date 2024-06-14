@@ -50,6 +50,14 @@
   text-transform: var(--article-detailed-tags-text-transform);
 }
 
+.mainCommunitySection h4 {
+  font-size: var(--community-section-header-font-size);
+}
+
+.socialMediaIconsContainer img {
+  cursor: pointer;
+}
+
 @media screen and (max-width: 900px) {
   .gridImageContainer:nth-child(1) {
     aspect-ratio: var(--grid-image-aspect-ratio);

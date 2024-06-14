@@ -7,13 +7,15 @@ function LogInFormComponent() {
 
   const [password, setPassword] = useState("");
 
-  const [, , IsUserLoggedIn, setIsUserLoggedIn] = useOutletContext();
+  const [, , checkIfUserIsLoggedIn, setCheckIfUserIsLoggedIn] =
+    useOutletContext();
 
   const [error, setError] = useState(null);
 
   const [loading, setLoading] = useState(true);
 
-  const [, , , , loggedInUser, setLoggedInUser] = useOutletContext();
+  const [, , , , loggedUserInformation, setLoggedUserInformation] =
+    useOutletContext();
 
   const navigate = useNavigate();
 
@@ -39,41 +41,59 @@ function LogInFormComponent() {
         },
       );
 
-      const result = await response.json();
-
-      if (result.message === "Unauthorized") {
-        setError(result.message);
+      if (response.status === 401) {
+        setError("Unauthorized");
       } else {
+        const result = await response.json();
+
         const bearerToken = ["Bearer", result.token];
 
         localStorage.setItem("token", JSON.stringify(bearerToken));
 
         navigate("/home");
 
-        setIsUserLoggedIn(true);
+        setCheckIfUserIsLoggedIn(true);
+
+        const responseFetchUser = await fetch("http://localhost:3000/user", {
+          mode: "cors",
+          headers: {
+            Authorization: localStorage.getItem("token"),
+          },
+        });
+
+        const loggedInUser = await responseFetchUser.json();
+
+        const obj = {
+          ...loggedInUser,
+          loggedInUser,
+        };
+
+        setLoggedUserInformation(obj);
+
+        console.log(loggedUserInformation);
       }
     } catch (err) {
-      //
+      console.log(err);
     }
   }
 
-  useEffect(() => {
-    fetch("http://localhost:3000/user", {
-      headers: {
-        Authorization: localStorage.getItem("token"),
-      },
-      mode: "cors",
-    })
-      .then((response) => {
-        if (response.status >= 400) {
-          throw new Error("Server Error");
-        }
-        return response.json();
-      })
-      .then((response) => setLoggedInUser(response))
-      .catch((error) => setError(error))
-      .finally(() => setLoading(false));
-  }, [setLoggedInUser]);
+  // useEffect(() => {
+  //   fetch("http://localhost:3000/user", {
+  //     headers: {
+  //       Authorization: localStorage.getItem("token"),
+  //     },
+  //     mode: "cors",
+  //   })
+  //     .then((response) => {
+  //       if (response.status >= 400) {
+  //         throw new Error("Server Error");
+  //       }
+  //       return response.json();
+  //     })
+  //     .then((response) => setLoggedInUser(response))
+  //     .catch((error) => setError(error))
+  //     .finally(() => setLoading(false));
+  // }, [setLoggedInUser]);
 
   return (
     <div className={styles.logInFormWrapper}>
@@ -110,7 +130,6 @@ function LogInFormComponent() {
               <span className={styles.error}>Unauthorized</span>
             )}
           </div>
-
           <div className={styles.formContentWrapper}>
             <label htmlFor="password">Password:</label>
             <input

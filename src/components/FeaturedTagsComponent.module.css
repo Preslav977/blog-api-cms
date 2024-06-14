@@ -1,7 +1,7 @@
 .featuredTagsContainer {
   display: flex;
   flex-direction: column;
-  padding: var(--featured-tags-padding);
+  padding: var(--featured-tags-container-padding);
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
@@ -20,7 +20,7 @@
 
 .featuredTags > a {
   outline: var(--article-category-outline);
-  padding: var(--featured-tags-link-padding);
+  padding: var(--featured-tags-padding);
   box-shadow: var(--article-category-box-shadow);
   text-transform: var(--article-category-text-transform);
   background-color: var(--article-category-background-color);

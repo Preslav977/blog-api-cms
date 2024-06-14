@@ -9,7 +9,10 @@ function CreatePostComponent() {
   const { id } = useParams();
 
   const [, , , , , , createPost, setCreatePost] = useOutletContext();
-  const [, , , , loggedInUser, setLoggedInUser] = useOutletContext();
+  const [, , , , loggedUserInformation, setLoggedUserInformation] =
+    useOutletContext();
+
+  console.log(loggedUserInformation);
 
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");
@@ -29,8 +32,6 @@ function CreatePostComponent() {
   const [image_link, setImage_Link] = useState("");
   const [image_owner, setImage_Owner] = useState("");
   const [image_source, setImage_Source] = useState("");
-
-  const [postId, setPostId] = useState("");
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -62,7 +63,7 @@ function CreatePostComponent() {
     const createPostObject = {
       ...createPost,
       title: postTitle,
-      author: loggedInUser._id,
+      author: loggedUserInformation._id,
       body: postBody,
       category: postCategory,
       tags: postTags,
@@ -83,7 +84,7 @@ function CreatePostComponent() {
         },
         body: JSON.stringify({
           title: postTitle,
-          author: loggedInUser._id,
+          author: loggedUserInformation._id,
           body: postBody,
           category: postCategory,
           tags: postTags,
@@ -97,10 +98,6 @@ function CreatePostComponent() {
       const result = await response.json();
 
       console.log(result);
-
-      setPostId(result._id);
-
-      console.log(postId);
     } catch (err) {
       console.log(err);
     }

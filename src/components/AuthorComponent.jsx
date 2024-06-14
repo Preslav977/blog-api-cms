@@ -1,4 +1,5 @@
 import styles from "./AuthorComponent.module.css";
+import { Link } from "react-router-dom";
 
 function AuthorComponent() {
   return (
@@ -14,23 +15,23 @@ function AuthorComponent() {
             className={styles.authorInformation}
           >
             Check out your own{" "}
-            <a className={styles.authorAnchor} href="">
+            <Link className={styles.authorAnchor} to="/home/create">
               author suite!
-            </a>{" "}
+            </Link>{" "}
             This suite allows you to create, edit, and preview posts in this
             blog!
           </p>
           <div>
-            <a className={styles.authorLink} href="">
+            <Link className={styles.authorLink} to="/home/create">
               Go to link
-            </a>
+            </Link>
           </div>
         </div>
         <div className={styles.authorSectionImgContainer}>
           <img
             className={styles.authorSectionImg}
             src="/author-girl.jpeg"
-            alt=""
+            alt="author girl managing the blog"
           />
         </div>
       </div>

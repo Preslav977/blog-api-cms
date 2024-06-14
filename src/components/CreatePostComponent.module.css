@@ -1,7 +1,7 @@
 .creatingPostContainer {
   max-width: var(--max-width-content);
   margin: var(--margin-default);
-  padding: 0px 1rem 0px 1rem;
+  padding: var(--create-post-container-padding);
 }
 
 .creatingPostHeader {

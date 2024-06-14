@@ -20,7 +20,6 @@
 
 .mainPagePostImg {
   aspect-ratio: var(--author-section-image-aspect-ratio);
-  width: 100%;
 }
 
 .mainPagePostArticleContainer:nth-child(3) > a > .mainPagePostImg {
@@ -45,6 +44,10 @@
 .mainPagePostBody > a > h2 {
   margin-top: var(--main-page-post-body-margin-top);
   margin-bottom: var(--main-page-post-body-margin-bottom);
+}
+
+.mainPagePostHeader {
+  font-size: var(--post-component-header-font-size);
 }
 
 @media screen and (max-width: 900px) {
