@@ -8,17 +8,17 @@ import { useParams } from "react-router-dom";
 function UserDashboardComponent() {
   const [posts, setPosts] = useOutletContext();
 
-  const [, , IsUserLoggedIn, setIsUserLoggedIn] = useOutletContext();
+  const [, , checkIfUserIsLoggedIn, setCheckIfUserIsLoggedIn] =
+    useOutletContext();
 
   const [error, setError] = useState(null);
 
   const [loading, setLoading] = useState(true);
 
-  const [, , , , loggedInUser, setLoggedInUser] = useOutletContext();
+  const [, , , , loggedUserInformation, setLoggedUserInformation] =
+    useOutletContext();
 
   const { id } = useParams();
-
-  console.log(loggedInUser);
 
   useEffect(() => {
     fetch("http://localhost:3000/user", {
@@ -34,10 +34,10 @@ function UserDashboardComponent() {
 
         return response.json();
       })
-      .then((response) => setLoggedInUser(response))
+      .then((response) => setLoggedUserInformation(response))
       .catch((error) => setError(error))
       .finally(() => setLoading(false));
-  }, [setLoggedInUser]);
+  }, [setLoggedUserInformation]);
 
   async function removePost(post) {
     setPosts(posts.filter((obj) => obj._id !== post._id));
@@ -63,8 +63,6 @@ function UserDashboardComponent() {
     setPosts(
       posts.map((obj) => {
         if (obj._id === post._id) {
-          console.log(obj._id);
-          console.log(post._id);
           return { ...obj, privacy: (obj.privacy = true) };
         } else {
           return obj;
@@ -89,8 +87,6 @@ function UserDashboardComponent() {
       const result = await response.json();
 
       console.log(result);
-
-      console.log(post.privacy);
     } catch (err) {
       console.log(err);
     }
@@ -100,8 +96,6 @@ function UserDashboardComponent() {
     setPosts(
       posts.map((obj) => {
         if (obj._id === post._id) {
-          console.log(obj._id);
-          console.log(post._id);
           return { ...obj, privacy: (obj.privacy = false) };
         } else {
           return obj;
@@ -131,7 +125,7 @@ function UserDashboardComponent() {
     }
   }
 
-  if (IsUserLoggedIn) {
+  if (checkIfUserIsLoggedIn) {
     return (
       <>
         <NavComponent />
@@ -139,7 +133,7 @@ function UserDashboardComponent() {
           <div className={styles.userDashboardContainer}>
             <div className={styles.greetingUserContainer}>
               <h2 className={styles.greetingUser}>
-                Welcome, {loggedInUser.first_name}
+                Welcome, {loggedUserInformation.first_name}
               </h2>
               <p>Welcome to dashboard!</p>
               <p className={styles.userWarningParagraph}>
@@ -153,7 +147,7 @@ function UserDashboardComponent() {
                 <div className={styles.userContent}>
                   <p className={styles.userLabel}>First Name:</p>
                   <p className={styles.userInformation}>
-                    {loggedInUser.first_name}
+                    {loggedUserInformation.first_name}
                   </p>
                   <a className={styles.userLink}>Change First Name</a>
                 </div>
@@ -161,13 +155,13 @@ function UserDashboardComponent() {
                   <p className={styles.userLabel}>Email:</p>
                   <p className={styles.userInformation}>
                     {" "}
-                    {loggedInUser.email}
+                    {loggedUserInformation.email}
                   </p>
                   <a className={styles.userLink}>Change Email</a>
                 </div>
                 <div>
                   <p className={styles.userLabel}>Verified Status:</p>
-                  {!loggedInUser.verified_status ? (
+                  {!loggedUserInformation.verified_status ? (
                     <p className={styles.userInformation}>Not Verified</p>
                   ) : (
                     <p className={styles.userInformation}>Verified</p>
@@ -180,7 +174,7 @@ function UserDashboardComponent() {
                   <p className={styles.userLabel}>Last Name:</p>
                   <p className={styles.userInformation}>
                     {" "}
-                    {loggedInUser.last_name}
+                    {loggedUserInformation.last_name}
                   </p>
                   <a className={styles.userLink}>Change Last Name</a>
                 </div>
@@ -188,7 +182,7 @@ function UserDashboardComponent() {
                   <p className={styles.userLabel}>Username:</p>
                   <p className={styles.userInformation}>
                     {" "}
-                    {loggedInUser.username}
+                    {loggedUserInformation.username}
                   </p>
                   <a className={styles.userLink}>Change Username</a>
                 </div>
@@ -213,7 +207,7 @@ function UserDashboardComponent() {
                       postBodyPathId={`/home/posts/${post._id}`}
                       postBody={post.body}
                     />
-                    {post.author._id === loggedInUser._id ? (
+                    {post.author._id === loggedUserInformation._id ? (
                       <div className={styles.managePostButtons}>
                         <button
                           className={styles.managePostButton}

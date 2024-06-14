@@ -11,9 +11,11 @@ function FetchSinglePost() {
   const [post, setPost] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [, , IsUserLogged, setIsUserLogged] = useOutletContext();
+  const [, , checkIfUserIsLoggedIn, setCheckIfUserIsLoggedIn] =
+    useOutletContext();
 
-  const [, , , , loggedInUser, setLoggedInUser] = useOutletContext();
+  const [, , , , loggedUserInformation, setLoggedUserInformation] =
+    useOutletContext();
 
   const formRef = useRef();
 
@@ -147,7 +149,7 @@ function FetchSinglePost() {
         </div>
         <div className={styles.articleCommentsContainer}>
           <h3>Comments</h3>
-          {!IsUserLogged ? (
+          {!checkIfUserIsLoggedIn ? (
             <p className={styles.articleLogInUser}>
               You must be logged in to add a comment
             </p>
@@ -201,7 +203,8 @@ function FetchSinglePost() {
                     />
                   )} */}
                     {/* <p className={styles.articleLike}>{postComments.like}</p> */}
-                    {loggedInUser._id === postComments.user._id ? (
+                    {loggedUserInformation._id === postComments.user._id &&
+                    !loggedUserInformation.admin ? (
                       <div className={styles.deleteCommentContainer}>
                         <img
                           onClick={() => {
@@ -217,7 +220,7 @@ function FetchSinglePost() {
                     ) : (
                       ""
                     )}
-                    {loggedInUser.admin ? (
+                    {loggedUserInformation.admin ? (
                       <div className={styles.deleteCommentContainer}>
                         <img
                           onClick={() => {

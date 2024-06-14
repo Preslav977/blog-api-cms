@@ -11,31 +11,31 @@ function CommunityComponent() {
             data-testid="img"
             className={styles.socialMediaIcon}
             src="/twitter.svg"
-            alt=""
+            alt="social network twitter"
           />
           <img
             data-testid="img"
             className={styles.socialMediaIcon}
             src="/pinterest.svg"
-            alt=""
+            alt="social network pinterest"
           />
           <img
             data-testid="img"
             className={styles.socialMediaIcon}
             src="/facebook.svg"
-            alt=""
+            alt="social network facebook"
           />
           <img
             data-testid="img"
             className={styles.socialMediaIcon}
             src="/youtube.svg"
-            alt=""
+            alt="youtube"
           />
           <img
             data-testid="img"
             className={styles.socialMediaIcon}
             src="/discord.svg"
-            alt=""
+            alt="discord"
           />
         </div>
       </section>
@@ -49,7 +49,7 @@ function CommunityComponent() {
           <img
             data-testid="img"
             src="https://images.unsplash.com/photo-1633064256280-c011dba5ed94?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-            alt=""
+            alt="Bulgarian flag on a pole"
           />
         </div>
         <div className={styles.gridImageContainer}>
@@ -61,7 +61,7 @@ function CommunityComponent() {
           <img
             data-testid="img"
             src="https://images.unsplash.com/photo-1594803294810-c860e5d29e07?q=80&w=2001&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-            alt=""
+            alt="Aleksandar Nevsky Cathedral"
           />
         </div>
         <div className={styles.gridImageContainer}>
@@ -73,7 +73,7 @@ function CommunityComponent() {
           <img
             data-testid="img"
             src="https://images.unsplash.com/photo-1622702968215-72155c9168fc?q=80&w=1975&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-            alt=""
+            alt="Apriltsi"
           />
         </div>
         <div className={styles.gridImageContainer}>
@@ -85,7 +85,7 @@ function CommunityComponent() {
           <img
             data-testid="img"
             src="https://images.unsplash.com/photo-1633210181101-774c588bc997?q=80&w=1954&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-            alt=""
+            alt="Plovdiv city"
           />
         </div>
         <div className={styles.gridImageContainer}>
@@ -97,7 +97,7 @@ function CommunityComponent() {
           <img
             data-testid="img"
             src="https://images.unsplash.com/photo-1621682372775-533449e550ed?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-            alt=""
+            alt="Seven Rila Lakes"
           />
         </div>
       </section>

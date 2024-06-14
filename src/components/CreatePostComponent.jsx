@@ -100,11 +100,7 @@ function CreatePostComponent() {
 
       postId = result._id;
 
-      console.log(postId);
-
       retrievePostCategory = postCategory;
-
-      console.log(retrievePostCategory);
 
       try {
         const response = await fetch(

@@ -122,7 +122,7 @@ function NavComponent() {
                     onClick={toggleLoggedUserDropDrown}
                     className={styles.loggedInUserSvg}
                     src="/bulgarian-flag-icon.jpeg"
-                    alt=""
+                    alt="bulgarian flag profile image"
                   />
                 </div>
                 {!loggedInUserDropDown ? (
@@ -210,7 +210,7 @@ function NavComponent() {
                         <img
                           className={styles.navPostImg}
                           src={post.image_link}
-                          alt=""
+                          alt="bulgarian posts images"
                         />
                       </Link>
                     </figure>

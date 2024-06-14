@@ -1,5 +1,5 @@
 import styles from "./LogInFormComponent.module.css";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useNavigate, useOutletContext } from "react-router-dom";
 
 function LogInFormComponent() {
@@ -41,11 +41,11 @@ function LogInFormComponent() {
         },
       );
 
-      if (response.status === 401) {
+      const result = await response.json();
+
+      if (result.message === "Unauthorized" || response.status === 401) {
         setError("Unauthorized");
       } else {
-        const result = await response.json();
-
         const bearerToken = ["Bearer", result.token];
 
         localStorage.setItem("token", JSON.stringify(bearerToken));
@@ -61,16 +61,14 @@ function LogInFormComponent() {
           },
         });
 
-        const loggedInUser = await responseFetchUser.json();
+        const loggedUserInformation = await responseFetchUser.json();
 
         const obj = {
-          ...loggedInUser,
-          loggedInUser,
+          ...loggedUserInformation,
+          loggedUserInformation,
         };
 
         setLoggedUserInformation(obj);
-
-        console.log(loggedUserInformation);
       }
     } catch (err) {
       console.log(err);
