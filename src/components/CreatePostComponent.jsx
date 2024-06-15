@@ -3,8 +3,11 @@ import { useOutletContext } from "react-router-dom";
 import styles from "./CreatePostComponent.module.css";
 import NavComponent from "./NavComponent";
 import { Editor } from "@tinymce/tinymce-react";
+import { useRef } from "react";
 
 function CreatePostComponent() {
+  const formRef = useRef();
+
   let postId = "";
 
   let retrievePostCategory = "";
@@ -73,6 +76,8 @@ function CreatePostComponent() {
     };
 
     setCreatePost(createPostObject);
+
+    formRef.current.reset();
 
     try {
       const response = await fetch(
@@ -162,6 +167,8 @@ function CreatePostComponent() {
                 <input
                   type="text"
                   name="title"
+                  minLength={5}
+                  maxLength={80}
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
                 />
@@ -197,7 +204,7 @@ function CreatePostComponent() {
                 <label htmlFor="category">Category</label>
                 <select
                   name="category"
-                  id=""
+                  id="category"
                   value={category}
                   onChange={(e) => setCategory(e.target.value)}
                 >
@@ -215,7 +222,7 @@ function CreatePostComponent() {
               </div>
               <div className={styles.formWrapper}>
                 <label htmlFor="tags">Tags</label>
-                <input type="text" name="tags" />
+                <input type="text" name="tags" minLength={3} maxLength={30} />
               </div>
               <div className={styles.formWrapper}>
                 <label htmlFor="image_link">Display Image:</label>
@@ -231,6 +238,8 @@ function CreatePostComponent() {
                 <input
                   type="text"
                   name="image_owner"
+                  minLength={3}
+                  maxLength={30}
                   value={image_owner}
                   onChange={(e) => setImage_Owner(e.target.value)}
                 />
@@ -240,6 +249,8 @@ function CreatePostComponent() {
                 <input
                   type="text"
                   name="image_source"
+                  minLength={3}
+                  maxLength={30}
                   value={image_source}
                   onChange={(e) => setImage_Source(e.target.value)}
                 />

@@ -42,6 +42,7 @@
 
 .articleAuthorInformation h2 {
   margin-bottom: var(--article-author-information-margin-bottom);
+  font-size: 1.8em;
   text-align: center;
 }
 
@@ -134,4 +135,27 @@
 
 .deleteCommentContainer:hover {
   cursor: pointer;
+}
+
+.articleDetailedInformation {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.articleDetailedInformation p {
+  width: var(--article-detailed-information-paragraph-width);
+}
+
+@media screen and (max-width: 600px) {
+  .articleDetailedInformation p {
+    width: var(--article-detailed-information-paragraph-full-width);
+  }
+}
+
+@media screen and (max-width: 390px) {
+  .articleDetailedInformation p {
+    width: var(--article-detailed-information-paragraph-full-width);
+  }
 }

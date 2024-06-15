@@ -151,6 +151,13 @@
   --create-post-container-padding: 0px 1rem 0px 1rem;
   --featured-tags-padding: 0.5em 0.6em;
   --manage-post-button-margin-bottom: 0.5em;
+  --article-information-header-font-size: 1.8em;
+  --login-button-margin-left: 2em;
+  --login-button-smaller-screen-margin-left: 0.5em;
+  --login-button-padding: 0.3em 0.45em;
+  --login-button-smaller-screen-padding: 0.3em 0.4em;
+  --article-detailed-information-paragraph-width: 45%;
+  --article-detailed-information-paragraph-full-width: 100%;
 }
 
 *,

@@ -168,3 +168,27 @@
     margin-left: var(--login-button-margin-left);
   }
 }
+
+@media screen and (min-width: 380px) {
+  .loginButton {
+    margin-left: var(--login-button-margin-left);
+  }
+}
+
+@media screen and (min-width: 370px) {
+  .loginButton {
+    margin-left: var(--login-button-smaller-screen-margin-left);
+    padding: var(--login-button-padding);
+  }
+}
+
+@media screen and (min-width: 360px) {
+  .loginButton {
+    margin-left: var(--login-button-smaller-screen-margin-left);
+    padding: var(--login-button-smaller-screen-padding);
+  }
+
+  .navMainPage {
+    margin-left: var(--login-button-margin-left);
+  }
+}
