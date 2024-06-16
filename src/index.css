@@ -158,6 +158,8 @@
   --login-button-smaller-screen-padding: 0.3em 0.4em;
   --article-detailed-information-paragraph-width: 45%;
   --article-detailed-information-paragraph-full-width: 100%;
+  --article-category-smaller-screen-padding: 0.3em 0.5em;
+  --nav-main-page-margin-left: 1.9em;
 }
 
 *,

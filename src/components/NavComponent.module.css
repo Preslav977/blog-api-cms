@@ -189,6 +189,6 @@
   }
 
   .navMainPage {
-    margin-left: var(--login-button-margin-left);
+    margin-left: var(--nav-main-page-margin-left);
   }
 }
