@@ -60,6 +60,10 @@ a.logInFormLink {
   font-size: var(--login-button-font-size);
 }
 
+.logInButton:nth-child(2) {
+  margin-left: 0.5em;
+}
+
 @media screen and (max-width: 450px) {
   .logInFormPolicyContent {
     text-align: center;

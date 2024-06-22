@@ -203,45 +203,51 @@ function UserDashboardComponent() {
                 Manage your posts
               </h3>
               <div>
-                {posts.map((post) => (
-                  <section key={post._id}>
-                    <FlexedPostComponent
-                      key={post._id}
-                      postImgPathId={`/home/posts/${post._id}`}
-                      postImgSrc={post.image_link}
-                      postCategoryPathId={`/home/posts/category/${post.category[0]._id}`}
-                      postCategory={post.category[0].category}
-                      postTitlePathId={`/home/posts/${post._id}`}
-                      postTitle={post.title}
-                      postBodyPathId={`/home/posts/${post._id}`}
-                      postBody={post.body}
-                    />
-                    {post.author._id === loggedUserInformation._id ? (
-                      <div className={styles.managePostButtons}>
-                        <button
-                          className={styles.managePostButton}
-                          onClick={() => removePost(post)}
-                        >
-                          Delete
-                        </button>
-                        <button
-                          className={styles.managePostButton}
-                          onClick={() => publishPost(post)}
-                        >
-                          Publish
-                        </button>
-                        <button
-                          className={styles.managePostButton}
-                          onClick={() => unPublishPost(post)}
-                        >
-                          Unpublished
-                        </button>
-                      </div>
-                    ) : (
-                      ""
-                    )}
-                  </section>
-                ))}
+                {loggedUserInformation.test_user ? (
+                  ""
+                ) : (
+                  <>
+                    {posts.map((post) => (
+                      <section key={post._id}>
+                        <FlexedPostComponent
+                          key={post._id}
+                          postImgPathId={`/home/posts/${post._id}`}
+                          postImgSrc={post.image_link}
+                          postCategoryPathId={`/home/posts/category/${post.category[0]._id}`}
+                          postCategory={post.category[0].category}
+                          postTitlePathId={`/home/posts/${post._id}`}
+                          postTitle={post.title}
+                          postBodyPathId={`/home/posts/${post._id}`}
+                          postBody={post.body}
+                        />
+                        {post.author._id === loggedUserInformation._id ? (
+                          <div className={styles.managePostButtons}>
+                            <button
+                              className={styles.managePostButton}
+                              onClick={() => removePost(post)}
+                            >
+                              Delete
+                            </button>
+                            <button
+                              className={styles.managePostButton}
+                              onClick={() => publishPost(post)}
+                            >
+                              Publish
+                            </button>
+                            <button
+                              className={styles.managePostButton}
+                              onClick={() => unPublishPost(post)}
+                            >
+                              Unpublished
+                            </button>
+                          </div>
+                        ) : (
+                          ""
+                        )}
+                      </section>
+                    ))}
+                  </>
+                )}
               </div>
             </div>
           </div>

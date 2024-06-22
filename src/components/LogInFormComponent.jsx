@@ -29,6 +29,7 @@ function LogInFormComponent() {
     try {
       const response = await fetch(
         "https://blog-api-backend-production-5dc1.up.railway.app/user/login_verified",
+
         {
           method: "POST",
           headers: {
@@ -78,23 +79,66 @@ function LogInFormComponent() {
     }
   }
 
-  // useEffect(() => {
-  //   fetch("http://localhost:3000/user", {
-  //     headers: {
-  //       Authorization: localStorage.getItem("token"),
-  //     },
-  //     mode: "cors",
-  //   })
-  //     .then((response) => {
-  //       if (response.status >= 400) {
-  //         throw new Error("Server Error");
-  //       }
-  //       return response.json();
-  //     })
-  //     .then((response) => setLoggedInUser(response))
-  //     .catch((error) => setError(error))
-  //     .finally(() => setLoading(false));
-  // }, [setLoggedInUser]);
+  async function HandleTestUserLogIn(e) {
+    e.preventDefault();
+
+    const testUserEmail = "testuser@email.com";
+
+    const testUserPassword = "ranDom@PassWort2015";
+
+    try {
+      const response = await fetch(
+        "https://blog-api-backend-production-5dc1.up.railway.app/user/login_test_user",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email: testUserEmail,
+            password: testUserPassword,
+          }),
+        },
+      );
+
+      const result = await response.json();
+
+      if (!response.status === 200) {
+        setError("Unsuccessful login");
+      } else {
+        const bearerToken = ["Bearer", result.token];
+
+        localStorage.setItem("token", JSON.stringify(bearerToken));
+
+        navigate("/home");
+
+        setCheckIfUserIsLoggedIn(true);
+
+        setError("");
+
+        const responseFetchUser = await fetch(
+          "https://blog-api-backend-production-5dc1.up.railway.app/user",
+          {
+            mode: "cors",
+            headers: {
+              Authorization: localStorage.getItem("token"),
+            },
+          },
+        );
+
+        const loggedUserInformation = await responseFetchUser.json();
+
+        const obj = {
+          ...loggedUserInformation,
+          loggedUserInformation,
+        };
+
+        setLoggedUserInformation(obj);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  }
 
   return (
     <div className={styles.logInFormWrapper}>
@@ -150,6 +194,14 @@ function LogInFormComponent() {
           </div>
           <div className={styles.logInButtonContainer}>
             <button className={styles.logInButton}>Log in</button>
+
+            <button
+              type="submit"
+              onClick={HandleTestUserLogIn}
+              className={styles.logInButton}
+            >
+              Log in as Guest
+            </button>
           </div>
         </form>
       </div>
