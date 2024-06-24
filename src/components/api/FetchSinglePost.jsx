@@ -39,8 +39,30 @@ function FetchSinglePost() {
       .finally(() => setLoading(false));
   }, [id, setPost]);
 
-  if (loading) return <p data-testid="loading">Loading....</p>;
-  if (error) return <p>A network error was encountered</p>;
+  if (loading)
+    return (
+      <div
+        style={{
+          height: "100vh",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <p data-testid="loading">Loading....</p>
+      </div>
+    );
+  if (error)
+    <div
+      style={{
+        height: "100vh",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
+      return <p>A network error was encountered</p>
+    </div>;
 
   async function submitComment(e) {
     e.preventDefault();
@@ -71,6 +93,22 @@ function FetchSinglePost() {
         },
       );
       const result = await response.json();
+
+      const fetchPost = await fetch(
+        `https://blog-api-backend-production-5dc1.up.railway.app/posts/${id}`,
+        {
+          mode: "cors",
+        },
+      );
+
+      const post = await fetchPost.json();
+
+      const postObj = {
+        ...post,
+        post,
+      };
+
+      setPost(postObj);
     } catch (err) {
       console.log(err);
     }

@@ -27,8 +27,30 @@ function FetchPostsByCategory() {
       .finally(() => setLoading(false));
   }, [id, setPosts]);
 
-  if (loading) return <p data-testid="loading">Loading....</p>;
-  if (error) return <p>A network error was encountered</p>;
+  if (loading)
+    return (
+      <div
+        style={{
+          height: "100vh",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <p data-testid="loading">Loading....</p>
+      </div>
+    );
+  if (error)
+    <div
+      style={{
+        height: "100vh",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
+      return <p>A network error was encountered</p>
+    </div>;
 
   return (
     <div>

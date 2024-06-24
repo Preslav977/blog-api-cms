@@ -161,6 +161,12 @@
   .navPostDescription {
     text-align: center;
   }
+
+  .navigationLinks {
+    display: flex;
+    gap: 1.8rem;
+    flex-direction: column;
+  }
 }
 
 @media screen and (min-width: 390px) {

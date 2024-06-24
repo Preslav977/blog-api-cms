@@ -2,6 +2,8 @@ import { screen, render } from "@testing-library/react";
 import AuthorComponent from "../components/AuthorComponent";
 import { createMemoryRouter, RouterProvider } from "react-router-dom";
 import { describe, expect } from "vitest";
+import userEvent from "@testing-library/user-event";
+import routes from "../router/routes";
 
 describe("Should render AuthorComponent", () => {
   it("should render the component content", () => {
@@ -16,7 +18,7 @@ describe("Should render AuthorComponent", () => {
 
     render(<RouterProvider router={router} />);
 
-    screen.debug();
+    // screen.debug();
 
     expect(screen.queryByText("Attention")).toBeInTheDocument();
 
