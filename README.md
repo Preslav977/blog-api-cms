@@ -1,5 +1,18 @@
 # blog-api-cms
 
+Features:
+
+- Filter posts by ID
+- Filter posts by tag name
+- Filter posts by category
+- Add a comment.
+- Delete a comment.
+- Create a post.
+- Add post category
+- Update the privacy of the post.
+- Delete a post.
+- live validation when signing up or logging up.
+
 1. This is the result of the blog API content management.
 
 ![Screenshot_2024-06-14_12-34-48](https://github.com/Preslav977/battleship/assets/119291608/52fe1669-5b51-457a-aafe-b7fe482d36ef)
