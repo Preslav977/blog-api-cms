@@ -21,7 +21,7 @@ function UserDashboardComponent() {
   const { id } = useParams();
 
   useEffect(() => {
-    fetch("https://blog-api-backend-production-5dc1.up.railway.app/user", {
+    fetch("https://living-valaree-lisika-8dbfbd43.koyeb.app/user", {
       headers: {
         Authorization: localStorage.getItem("token"),
       },
@@ -44,7 +44,7 @@ function UserDashboardComponent() {
 
     try {
       const response = await fetch(
-        `https://blog-api-backend-production-5dc1.up.railway.app/posts/${id}`,
+        `https://living-valaree-lisika-8dbfbd43.koyeb.app/posts/${id}`,
         {
           method: "DELETE",
           headers: {
@@ -75,7 +75,7 @@ function UserDashboardComponent() {
 
     try {
       const response = await fetch(
-        `https://blog-api-backend-production-5dc1.up.railway.app/posts/${id}`,
+        `https://living-valaree-lisika-8dbfbd43.koyeb.app/posts/${id}`,
         {
           method: "PUT",
           headers: {
@@ -111,7 +111,7 @@ function UserDashboardComponent() {
 
     try {
       const response = await fetch(
-        `https://blog-api-backend-production-5dc1.up.railway.app/posts/${id}`,
+        `https://living-valaree-lisika-8dbfbd43.koyeb.app/posts/${id}`,
         {
           method: "PUT",
           headers: {

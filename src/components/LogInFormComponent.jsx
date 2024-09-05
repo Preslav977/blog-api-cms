@@ -28,7 +28,7 @@ function LogInFormComponent() {
 
     try {
       const response = await fetch(
-        "https://blog-api-backend-production-5dc1.up.railway.app/user/login_verified",
+        "https://living-valaree-lisika-8dbfbd43.koyeb.app/user/login_verified",
 
         {
           method: "POST",
@@ -56,7 +56,7 @@ function LogInFormComponent() {
         setCheckIfUserIsLoggedIn(true);
 
         const responseFetchUser = await fetch(
-          "https://blog-api-backend-production-5dc1.up.railway.app/user",
+          "https://living-valaree-lisika-8dbfbd43.koyeb.app/user",
           {
             mode: "cors",
             headers: {
@@ -88,7 +88,7 @@ function LogInFormComponent() {
 
     try {
       const response = await fetch(
-        "https://blog-api-backend-production-5dc1.up.railway.app/user/login_test_user",
+        "https://living-valaree-lisika-8dbfbd43.koyeb.app/user/login_test_user",
         {
           method: "POST",
           headers: {
@@ -117,7 +117,7 @@ function LogInFormComponent() {
         setError("");
 
         const responseFetchUser = await fetch(
-          "https://blog-api-backend-production-5dc1.up.railway.app/user",
+          "https://living-valaree-lisika-8dbfbd43.koyeb.app/user",
           {
             mode: "cors",
             headers: {

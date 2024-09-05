@@ -24,10 +24,9 @@ function FetchSinglePost() {
   const sanitizedHTMLContent = DOMPurify.sanitize(post.body);
 
   useEffect(() => {
-    fetch(
-      `https://blog-api-backend-production-5dc1.up.railway.app/posts/${id}`,
-      { mode: "cors" },
-    )
+    fetch(`https://living-valaree-lisika-8dbfbd43.koyeb.app/posts/${id}`, {
+      mode: "cors",
+    })
       .then((response) => {
         if (response.status >= 400) {
           throw new Error("Server Error");
@@ -41,17 +40,12 @@ function FetchSinglePost() {
 
   if (loading)
     return (
-      <div
-        style={{
-          height: "100vh",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
-        <p data-testid="loading">Loading....</p>
+      <div data-testid="loading" className="loadingContainer">
+        <img className="loading" src="loading.svg" alt="Loading..." />
+        <p data-testid="loading">Loading....</p>;
       </div>
     );
+
   if (error)
     <div
       style={{
@@ -82,7 +76,7 @@ function FetchSinglePost() {
 
     try {
       const response = await fetch(
-        `https://blog-api-backend-production-5dc1.up.railway.app/posts/${id}/comments`,
+        `https://living-valaree-lisika-8dbfbd43.koyeb.app/posts/${id}/comments`,
         {
           method: "POST",
           headers: {
@@ -95,7 +89,7 @@ function FetchSinglePost() {
       const result = await response.json();
 
       const fetchPost = await fetch(
-        `https://blog-api-backend-production-5dc1.up.railway.app/posts/${id}`,
+        `https://living-valaree-lisika-8dbfbd43.koyeb.app/posts/${id}`,
         {
           mode: "cors",
         },
@@ -124,7 +118,7 @@ function FetchSinglePost() {
 
     try {
       const response = await fetch(
-        `https://blog-api-backend-production-5dc1.up.railway.app/posts/${id}/comment`,
+        `https://living-valaree-lisika-8dbfbd43.koyeb.app/posts/${id}/comment`,
         {
           method: "DELETE",
           headers: {

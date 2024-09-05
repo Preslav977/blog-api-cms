@@ -13,7 +13,7 @@ function FetchPostsByCategory() {
 
   useEffect(() => {
     fetch(
-      `https://blog-api-backend-production-5dc1.up.railway.app/posts/category/${id}`,
+      `https://living-valaree-lisika-8dbfbd43.koyeb.app/posts/category/${id}`,
       { mode: "cors" },
     )
       .then((response) => {
@@ -29,17 +29,12 @@ function FetchPostsByCategory() {
 
   if (loading)
     return (
-      <div
-        style={{
-          height: "100vh",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
-        <p data-testid="loading">Loading....</p>
+      <div data-testid="loading" className="loadingContainer">
+        <img className="loading" src="loading.svg" alt="Loading..." />
+        <p data-testid="loading">Loading....</p>;
       </div>
     );
+
   if (error)
     <div
       style={{

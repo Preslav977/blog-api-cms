@@ -222,3 +222,29 @@ picture {
 hr {
   margin: 3em 0px;
 }
+
+@keyframes spin {
+  from {
+    transform: rotate(0turn);
+  }
+
+  to {
+    transform: rotate(1turn);
+  }
+}
+
+.loading {
+  animation: spin 1000ms;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  display: block;
+  width: 100px;
+  height: 100px;
+}
+
+.loadingContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}

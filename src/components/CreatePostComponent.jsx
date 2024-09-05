@@ -81,7 +81,7 @@ function CreatePostComponent() {
 
     try {
       const response = await fetch(
-        "https://blog-api-backend-production-5dc1.up.railway.app/posts/",
+        "https://living-valaree-lisika-8dbfbd43.koyeb.app/posts/",
         {
           method: "POST",
           headers: {
@@ -112,7 +112,7 @@ function CreatePostComponent() {
 
       try {
         const response = await fetch(
-          `https://blog-api-backend-production-5dc1.up.railway.app/posts/${postId}/category`,
+          `https://living-valaree-lisika-8dbfbd43.koyeb.app/posts/${postId}/category`,
           {
             method: "POST",
             headers: {
