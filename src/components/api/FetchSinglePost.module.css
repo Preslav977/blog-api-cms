@@ -137,11 +137,16 @@
   cursor: pointer;
 }
 
-.articleDetailedInformation h2,
+/* .articleDetailedInformation h2,
 .articleDetailedInformation ul,
 .articleDetailedInformation li {
   margin: var(--margin-default);
   text-align: center;
+} */
+
+.articleAuthorInformation p > a > img {
+  height: auto;
+  outline: 2px solid black;
 }
 
 .articleDetailedInformation p {

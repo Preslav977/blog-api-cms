@@ -24,7 +24,7 @@ function FetchSinglePost() {
   const sanitizedHTMLContent = DOMPurify.sanitize(post.body);
 
   useEffect(() => {
-    fetch(`https://living-valaree-lisika-8dbfbd43.koyeb.app/posts/${id}`, {
+    fetch(`https://quixotic-chivalrous-quit.glitch.me/posts/${id}`, {
       mode: "cors",
     })
       .then((response) => {
@@ -76,7 +76,7 @@ function FetchSinglePost() {
 
     try {
       const response = await fetch(
-        `https://living-valaree-lisika-8dbfbd43.koyeb.app/posts/${id}/comments`,
+        `https://quixotic-chivalrous-quit.glitch.me/posts/${id}/comments`,
         {
           method: "POST",
           headers: {
@@ -89,7 +89,7 @@ function FetchSinglePost() {
       const result = await response.json();
 
       const fetchPost = await fetch(
-        `https://living-valaree-lisika-8dbfbd43.koyeb.app/posts/${id}`,
+        `https://quixotic-chivalrous-quit.glitch.me/posts/${id}`,
         {
           mode: "cors",
         },
@@ -118,7 +118,7 @@ function FetchSinglePost() {
 
     try {
       const response = await fetch(
-        `https://living-valaree-lisika-8dbfbd43.koyeb.app/posts/${id}/comment`,
+        `https://quixotic-chivalrous-quit.glitch.me/posts/${id}/comment`,
         {
           method: "DELETE",
           headers: {

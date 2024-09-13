@@ -21,7 +21,7 @@ function UserDashboardComponent() {
   const { id } = useParams();
 
   useEffect(() => {
-    fetch("https://living-valaree-lisika-8dbfbd43.koyeb.app/user", {
+    fetch("https://quixotic-chivalrous-quit.glitch.me/user", {
       headers: {
         Authorization: localStorage.getItem("token"),
       },
@@ -44,7 +44,7 @@ function UserDashboardComponent() {
 
     try {
       const response = await fetch(
-        `https://living-valaree-lisika-8dbfbd43.koyeb.app/posts/${id}`,
+        `https://quixotic-chivalrous-quit.glitch.me/posts/${id}`,
         {
           method: "DELETE",
           headers: {
@@ -66,7 +66,7 @@ function UserDashboardComponent() {
     setPosts(
       posts.map((obj) => {
         if (obj._id === post._id) {
-          return { ...obj, privacy: (obj.privacy = true) };
+          return { ...obj, privacy: true };
         } else {
           return obj;
         }
@@ -75,7 +75,7 @@ function UserDashboardComponent() {
 
     try {
       const response = await fetch(
-        `https://living-valaree-lisika-8dbfbd43.koyeb.app/posts/${id}`,
+        `https://quixotic-chivalrous-quit.glitch.me/posts/${id}`,
         {
           method: "PUT",
           headers: {
@@ -102,7 +102,7 @@ function UserDashboardComponent() {
     setPosts(
       posts.map((obj) => {
         if (obj._id === post._id) {
-          return { ...obj, privacy: (obj.privacy = false) };
+          return { ...obj, privacy: false };
         } else {
           return obj;
         }
@@ -111,7 +111,7 @@ function UserDashboardComponent() {
 
     try {
       const response = await fetch(
-        `https://living-valaree-lisika-8dbfbd43.koyeb.app/posts/${id}`,
+        `https://quixotic-chivalrous-quit.glitch.me/posts/${id}`,
         {
           method: "PUT",
           headers: {

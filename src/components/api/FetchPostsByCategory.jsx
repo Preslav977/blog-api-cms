@@ -12,10 +12,9 @@ function FetchPostsByCategory() {
   const { id } = useParams();
 
   useEffect(() => {
-    fetch(
-      `https://living-valaree-lisika-8dbfbd43.koyeb.app/posts/category/${id}`,
-      { mode: "cors" },
-    )
+    fetch(`https://quixotic-chivalrous-quit.glitch.me/posts/category/${id}`, {
+      mode: "cors",
+    })
       .then((response) => {
         if (response.status >= 400) {
           throw new Error("Server Error");

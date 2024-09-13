@@ -14,7 +14,7 @@ function FetchPosts() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("https://living-valaree-lisika-8dbfbd43.koyeb.app/posts/", {
+    fetch("https://quixotic-chivalrous-quit.glitch.me/posts", {
       mode: "cors",
     })
       .then((response) => {
@@ -31,8 +31,10 @@ function FetchPosts() {
   if (loading)
     return (
       <div data-testid="loading" className="loadingContainer">
-        <img className="loading" src="loading.svg" alt="Loading..." />
-        <p data-testid="loading">Loading....</p>;
+        <figure className="figureLoadingContainer">
+          <img className="loading" src="loading.svg" alt="Loading..." />
+          <p data-testid="loading">Loading....</p>
+        </figure>
       </div>
     );
 

@@ -40,6 +40,8 @@ function CreatePostComponent() {
 
     const FormDataObject = new FormData(e.target);
 
+    console.log(FormDataObject);
+
     const postTitle = FormDataObject.get("title");
 
     const postBody = FormDataObject.get("body");
@@ -77,11 +79,11 @@ function CreatePostComponent() {
 
     setCreatePost(createPostObject);
 
-    formRef.current.reset();
+    // formRef.current.reset();
 
     try {
       const response = await fetch(
-        "https://living-valaree-lisika-8dbfbd43.koyeb.app/posts/",
+        "https://quixotic-chivalrous-quit.glitch.me/posts/",
         {
           method: "POST",
           headers: {
@@ -104,7 +106,7 @@ function CreatePostComponent() {
 
       const result = await response.json();
 
-      console.log(result);
+      // console.log(result);
 
       postId = result._id;
 
@@ -112,7 +114,7 @@ function CreatePostComponent() {
 
       try {
         const response = await fetch(
-          `https://living-valaree-lisika-8dbfbd43.koyeb.app/posts/${postId}/category`,
+          `https://quixotic-chivalrous-quit.glitch.me/posts/${postId}/category`,
           {
             method: "POST",
             headers: {
@@ -184,9 +186,9 @@ function CreatePostComponent() {
                   textareaName="body"
                   init={{
                     plugins:
-                      "anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage advtemplate ai mentions tinycomments tableofcontents footnotes mergetags autocorrect typography inlinecss markdown",
+                      "anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount",
                     toolbar:
-                      "undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat",
+                      "undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat",
                     tinycomments_mode: "embedded",
                     tinycomments_author: "Author name",
                     mergetags_list: [
