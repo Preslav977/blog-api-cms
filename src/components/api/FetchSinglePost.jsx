@@ -41,8 +41,10 @@ function FetchSinglePost() {
   if (loading)
     return (
       <div data-testid="loading" className="loadingContainer">
-        <img className="loading" src="loading.svg" alt="Loading..." />
-        <p data-testid="loading">Loading....</p>;
+        <figure className="figureLoadingContainer">
+          <img className="loading" src="loading.svg" alt="Loading..." />
+          <p data-testid="loading">Loading....</p>
+        </figure>
       </div>
     );
 
