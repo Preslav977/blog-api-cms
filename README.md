@@ -11,6 +11,13 @@ This is the front-end content management of the project. Created with React libr
 This is the blog content management system on the frontend of the blog that allows the user to create a post, delete a post, publish it, unpublish it, and leave a comment.
 In order to access these rights, you need to be verified or an admin; otherwise, you can't log in.
 
+# Live Previews
+
+- [View the live site here](https://blog-api-frontend-lime.vercel.app/)
+- [View the live CMS site here](https://blog-api-cms-ten.vercel.app/)
+- [View the front-end repository here](https://github.com/Preslav977/blog-api-frontend)
+- [View the back-end API repository here](https://github.com/Preslav977/blog-api-backend)
+
 # Features
 
 - Filter posts by ID
